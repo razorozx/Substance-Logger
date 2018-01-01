@@ -8,7 +8,10 @@ namespace Substance_Logger
 {
     struct Substance
     {
-        // all of these structs will be logged in a file so the user can pick them later on from a dropdown box
+        /* substances will be recorded so when the user uses 
+         * the substance again there will be a dropdown box to choose
+         * the substance for ease of use.
+         */
         public string name;
         List<Substance> interactions;
 
@@ -32,14 +35,5 @@ namespace Substance_Logger
         }
 
         #endregion
-    }
-
-    struct Dosage
-    {
-        Substance substance;
-        public long dose;
-        public string doseType;             // ex: grams, ounces, liters, etc.
-
-
     }
 }
