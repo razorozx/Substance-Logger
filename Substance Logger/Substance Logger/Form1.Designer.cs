@@ -1,6 +1,6 @@
 ﻿namespace Substance_Logger
 {
-    partial class curTime_lbl
+    partial class LoggerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.settings_btn = new System.Windows.Forms.Button();
             this.strtstp_btn = new System.Windows.Forms.Button();
             this.filename_lbl = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.curTime_lbl = new System.Windows.Forms.Label();
             this.new_entry_grpBx = new System.Windows.Forms.GroupBox();
             this.prev_entry_grpBx = new System.Windows.Forms.GroupBox();
             this.add_btn = new System.Windows.Forms.Button();
@@ -80,14 +80,14 @@
             this.filename_lbl.TabIndex = 2;
             this.filename_lbl.Text = "File Name: ";
             // 
-            // label1
+            // curTime_lbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(335, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Current Time (24-hr)";
+            this.curTime_lbl.AutoSize = true;
+            this.curTime_lbl.Location = new System.Drawing.Point(335, 18);
+            this.curTime_lbl.Name = "curTime_lbl";
+            this.curTime_lbl.Size = new System.Drawing.Size(100, 13);
+            this.curTime_lbl.TabIndex = 3;
+            this.curTime_lbl.Text = "Current Time (24-hr)";
             // 
             // new_entry_grpBx
             // 
@@ -272,20 +272,20 @@
             this.info3_txtbx.TabIndex = 6;
             this.info3_txtbx.Text = "T+0:00\r\nDose: Substance\r\nRedose: Y/N\r\nAmount: 1000 mg";
             // 
-            // curTime_lbl
+            // LoggerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 617);
             this.Controls.Add(this.prev_entry_grpBx);
             this.Controls.Add(this.new_entry_grpBx);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.curTime_lbl);
             this.Controls.Add(this.filename_lbl);
             this.Controls.Add(this.strtstp_btn);
             this.Controls.Add(this.settings_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "curTime_lbl";
+            this.Name = "LoggerForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Substance Logger";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_Closing);
@@ -303,7 +303,7 @@
         private System.Windows.Forms.Button settings_btn;
         private System.Windows.Forms.Button strtstp_btn;
         private System.Windows.Forms.Label filename_lbl;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label curTime_lbl;
         private System.Windows.Forms.GroupBox new_entry_grpBx;
         private System.Windows.Forms.GroupBox prev_entry_grpBx;
         private System.Windows.Forms.Button add_btn;

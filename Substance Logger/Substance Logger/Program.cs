@@ -16,7 +16,7 @@ namespace Substance_Logger
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new curTime_lbl());
+            Application.Run(new LoggerForm());
         }
     }
 }

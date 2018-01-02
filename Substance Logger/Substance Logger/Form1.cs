@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Substance_Logger
 {
-    public partial class curTime_lbl : Form
+    public partial class LoggerForm : Form
     {
-        public curTime_lbl()
+        public LoggerForm()
         {
             InitializeComponent();
             // when form is loaded, do checks (ie. does saved directory exist?)
