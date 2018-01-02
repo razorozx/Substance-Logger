@@ -10,11 +10,25 @@ using System.Windows.Forms;
 
 namespace Substance_Logger
 {
-    public partial class Form1 : Form
+    public partial class curTime_lbl : Form
     {
-        public Form1()
+        public curTime_lbl()
         {
             InitializeComponent();
+            // when form is loaded, do checks (ie. does saved directory exist?)
+            //      assuming that the file was loaded before
+        }
+
+        private void Form_Closing(object sender, FormClosedEventArgs e)
+        {
+            // if logger is in progress
+            // do question closing window
+            // (it wouldn't make sense to do the question if they aren't recording)
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Add entry
         }
     }
 }
