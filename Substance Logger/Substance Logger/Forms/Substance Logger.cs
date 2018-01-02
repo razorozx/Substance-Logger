@@ -26,9 +26,9 @@ namespace Substance_Logger
             // (it wouldn't make sense to do the question if they aren't recording)
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void settings_btn_Click(object sender, EventArgs e)
         {
-            // Add entry
+
         }
     }
 }

@@ -33,22 +33,22 @@
             this.filename_lbl = new System.Windows.Forms.Label();
             this.curTime_lbl = new System.Windows.Forms.Label();
             this.new_entry_grpBx = new System.Windows.Forms.GroupBox();
-            this.prev_entry_grpBx = new System.Windows.Forms.GroupBox();
-            this.add_btn = new System.Windows.Forms.Button();
-            this.newdose_chkbx = new System.Windows.Forms.CheckBox();
-            this.redose_chkbx = new System.Windows.Forms.CheckBox();
-            this.sbstnc_nm_cmbbx = new System.Windows.Forms.ComboBox();
-            this.msrmnt_unit_cmbbx = new System.Windows.Forms.ComboBox();
-            this.amount_txtbx = new System.Windows.Forms.TextBox();
             this.exprnc_txtbx = new System.Windows.Forms.TextBox();
-            this.info_lbl = new System.Windows.Forms.Label();
-            this.entry_lbl = new System.Windows.Forms.Label();
-            this.info1_txtbx = new System.Windows.Forms.TextBox();
-            this.exprnc1_txtbx = new System.Windows.Forms.TextBox();
-            this.exprnc2_txtbx = new System.Windows.Forms.TextBox();
-            this.info2_txtbx = new System.Windows.Forms.TextBox();
+            this.amount_txtbx = new System.Windows.Forms.TextBox();
+            this.msrmnt_unit_cmbbx = new System.Windows.Forms.ComboBox();
+            this.sbstnc_nm_cmbbx = new System.Windows.Forms.ComboBox();
+            this.redose_chkbx = new System.Windows.Forms.CheckBox();
+            this.newdose_chkbx = new System.Windows.Forms.CheckBox();
+            this.add_btn = new System.Windows.Forms.Button();
+            this.prev_entry_grpBx = new System.Windows.Forms.GroupBox();
             this.exprnc3_txtbx = new System.Windows.Forms.TextBox();
             this.info3_txtbx = new System.Windows.Forms.TextBox();
+            this.exprnc2_txtbx = new System.Windows.Forms.TextBox();
+            this.info2_txtbx = new System.Windows.Forms.TextBox();
+            this.exprnc1_txtbx = new System.Windows.Forms.TextBox();
+            this.info1_txtbx = new System.Windows.Forms.TextBox();
+            this.entry_lbl = new System.Windows.Forms.Label();
+            this.info_lbl = new System.Windows.Forms.Label();
             this.new_entry_grpBx.SuspendLayout();
             this.prev_entry_grpBx.SuspendLayout();
             this.SuspendLayout();
@@ -61,6 +61,7 @@
             this.settings_btn.TabIndex = 0;
             this.settings_btn.Text = "Settings";
             this.settings_btn.UseVisualStyleBackColor = true;
+            this.settings_btn.Click += new System.EventHandler(this.settings_btn_Click);
             // 
             // strtstp_btn
             // 
@@ -105,6 +106,71 @@
             this.new_entry_grpBx.TabStop = false;
             this.new_entry_grpBx.Text = "New Entry | T+0:00";
             // 
+            // exprnc_txtbx
+            // 
+            this.exprnc_txtbx.Location = new System.Drawing.Point(7, 68);
+            this.exprnc_txtbx.Multiline = true;
+            this.exprnc_txtbx.Name = "exprnc_txtbx";
+            this.exprnc_txtbx.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.exprnc_txtbx.Size = new System.Drawing.Size(446, 98);
+            this.exprnc_txtbx.TabIndex = 6;
+            this.exprnc_txtbx.Text = "User Experience";
+            // 
+            // amount_txtbx
+            // 
+            this.amount_txtbx.Location = new System.Drawing.Point(197, 43);
+            this.amount_txtbx.Name = "amount_txtbx";
+            this.amount_txtbx.Size = new System.Drawing.Size(175, 20);
+            this.amount_txtbx.TabIndex = 5;
+            this.amount_txtbx.Text = "Amount";
+            // 
+            // msrmnt_unit_cmbbx
+            // 
+            this.msrmnt_unit_cmbbx.FormattingEnabled = true;
+            this.msrmnt_unit_cmbbx.Location = new System.Drawing.Point(378, 43);
+            this.msrmnt_unit_cmbbx.Name = "msrmnt_unit_cmbbx";
+            this.msrmnt_unit_cmbbx.Size = new System.Drawing.Size(75, 21);
+            this.msrmnt_unit_cmbbx.TabIndex = 4;
+            this.msrmnt_unit_cmbbx.Text = "Unit Type";
+            // 
+            // sbstnc_nm_cmbbx
+            // 
+            this.sbstnc_nm_cmbbx.FormattingEnabled = true;
+            this.sbstnc_nm_cmbbx.Location = new System.Drawing.Point(197, 16);
+            this.sbstnc_nm_cmbbx.Name = "sbstnc_nm_cmbbx";
+            this.sbstnc_nm_cmbbx.Size = new System.Drawing.Size(225, 21);
+            this.sbstnc_nm_cmbbx.TabIndex = 3;
+            this.sbstnc_nm_cmbbx.Text = "Substance Name";
+            // 
+            // redose_chkbx
+            // 
+            this.redose_chkbx.AutoSize = true;
+            this.redose_chkbx.Location = new System.Drawing.Point(26, 44);
+            this.redose_chkbx.Name = "redose_chkbx";
+            this.redose_chkbx.Size = new System.Drawing.Size(63, 17);
+            this.redose_chkbx.TabIndex = 2;
+            this.redose_chkbx.Text = "Redose";
+            this.redose_chkbx.UseVisualStyleBackColor = true;
+            // 
+            // newdose_chkbx
+            // 
+            this.newdose_chkbx.AutoSize = true;
+            this.newdose_chkbx.Location = new System.Drawing.Point(7, 20);
+            this.newdose_chkbx.Name = "newdose_chkbx";
+            this.newdose_chkbx.Size = new System.Drawing.Size(76, 17);
+            this.newdose_chkbx.TabIndex = 1;
+            this.newdose_chkbx.Text = "New Dose";
+            this.newdose_chkbx.UseVisualStyleBackColor = true;
+            // 
+            // add_btn
+            // 
+            this.add_btn.Location = new System.Drawing.Point(430, 16);
+            this.add_btn.Name = "add_btn";
+            this.add_btn.Size = new System.Drawing.Size(22, 22);
+            this.add_btn.TabIndex = 0;
+            this.add_btn.Text = "+";
+            this.add_btn.UseVisualStyleBackColor = true;
+            // 
             // prev_entry_grpBx
             // 
             this.prev_entry_grpBx.Controls.Add(this.exprnc3_txtbx);
@@ -122,111 +188,27 @@
             this.prev_entry_grpBx.TabStop = false;
             this.prev_entry_grpBx.Text = "Previous Entries";
             // 
-            // add_btn
+            // exprnc3_txtbx
             // 
-            this.add_btn.Location = new System.Drawing.Point(430, 16);
-            this.add_btn.Name = "add_btn";
-            this.add_btn.Size = new System.Drawing.Size(23, 23);
-            this.add_btn.TabIndex = 0;
-            this.add_btn.Text = "+";
-            this.add_btn.UseVisualStyleBackColor = true;
-            this.add_btn.Click += new System.EventHandler(this.button1_Click);
+            this.exprnc3_txtbx.Location = new System.Drawing.Point(149, 249);
+            this.exprnc3_txtbx.Multiline = true;
+            this.exprnc3_txtbx.Name = "exprnc3_txtbx";
+            this.exprnc3_txtbx.ReadOnly = true;
+            this.exprnc3_txtbx.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.exprnc3_txtbx.Size = new System.Drawing.Size(304, 100);
+            this.exprnc3_txtbx.TabIndex = 7;
+            this.exprnc3_txtbx.Text = "Experience";
             // 
-            // newdose_chkbx
+            // info3_txtbx
             // 
-            this.newdose_chkbx.AutoSize = true;
-            this.newdose_chkbx.Location = new System.Drawing.Point(7, 20);
-            this.newdose_chkbx.Name = "newdose_chkbx";
-            this.newdose_chkbx.Size = new System.Drawing.Size(76, 17);
-            this.newdose_chkbx.TabIndex = 1;
-            this.newdose_chkbx.Text = "New Dose";
-            this.newdose_chkbx.UseVisualStyleBackColor = true;
-            // 
-            // redose_chkbx
-            // 
-            this.redose_chkbx.AutoSize = true;
-            this.redose_chkbx.Location = new System.Drawing.Point(26, 44);
-            this.redose_chkbx.Name = "redose_chkbx";
-            this.redose_chkbx.Size = new System.Drawing.Size(63, 17);
-            this.redose_chkbx.TabIndex = 2;
-            this.redose_chkbx.Text = "Redose";
-            this.redose_chkbx.UseVisualStyleBackColor = true;
-            // 
-            // sbstnc_nm_cmbbx
-            // 
-            this.sbstnc_nm_cmbbx.FormattingEnabled = true;
-            this.sbstnc_nm_cmbbx.Location = new System.Drawing.Point(197, 16);
-            this.sbstnc_nm_cmbbx.Name = "sbstnc_nm_cmbbx";
-            this.sbstnc_nm_cmbbx.Size = new System.Drawing.Size(225, 21);
-            this.sbstnc_nm_cmbbx.TabIndex = 3;
-            this.sbstnc_nm_cmbbx.Text = "Substance Name";
-            // 
-            // msrmnt_unit_cmbbx
-            // 
-            this.msrmnt_unit_cmbbx.FormattingEnabled = true;
-            this.msrmnt_unit_cmbbx.Location = new System.Drawing.Point(378, 43);
-            this.msrmnt_unit_cmbbx.Name = "msrmnt_unit_cmbbx";
-            this.msrmnt_unit_cmbbx.Size = new System.Drawing.Size(75, 21);
-            this.msrmnt_unit_cmbbx.TabIndex = 4;
-            this.msrmnt_unit_cmbbx.Text = "Unit Type";
-            // 
-            // amount_txtbx
-            // 
-            this.amount_txtbx.Location = new System.Drawing.Point(197, 43);
-            this.amount_txtbx.Name = "amount_txtbx";
-            this.amount_txtbx.Size = new System.Drawing.Size(175, 20);
-            this.amount_txtbx.TabIndex = 5;
-            this.amount_txtbx.Text = "Amount";
-            // 
-            // exprnc_txtbx
-            // 
-            this.exprnc_txtbx.Location = new System.Drawing.Point(7, 68);
-            this.exprnc_txtbx.Multiline = true;
-            this.exprnc_txtbx.Name = "exprnc_txtbx";
-            this.exprnc_txtbx.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.exprnc_txtbx.Size = new System.Drawing.Size(446, 98);
-            this.exprnc_txtbx.TabIndex = 6;
-            this.exprnc_txtbx.Text = "User Experience";
-            // 
-            // info_lbl
-            // 
-            this.info_lbl.AutoSize = true;
-            this.info_lbl.Location = new System.Drawing.Point(26, 20);
-            this.info_lbl.Name = "info_lbl";
-            this.info_lbl.Size = new System.Drawing.Size(25, 13);
-            this.info_lbl.TabIndex = 0;
-            this.info_lbl.Text = "Info";
-            // 
-            // entry_lbl
-            // 
-            this.entry_lbl.AutoSize = true;
-            this.entry_lbl.Location = new System.Drawing.Point(146, 20);
-            this.entry_lbl.Name = "entry_lbl";
-            this.entry_lbl.Size = new System.Drawing.Size(31, 13);
-            this.entry_lbl.TabIndex = 1;
-            this.entry_lbl.Text = "Entry";
-            // 
-            // info1_txtbx
-            // 
-            this.info1_txtbx.Enabled = false;
-            this.info1_txtbx.Location = new System.Drawing.Point(7, 37);
-            this.info1_txtbx.Multiline = true;
-            this.info1_txtbx.Name = "info1_txtbx";
-            this.info1_txtbx.ReadOnly = true;
-            this.info1_txtbx.Size = new System.Drawing.Size(120, 58);
-            this.info1_txtbx.TabIndex = 2;
-            this.info1_txtbx.Text = "T+1:00\r\nDose: Substance\r\nRedose: Y/N\r\nAmount: 1000 mg";
-            // 
-            // exprnc1_txtbx
-            // 
-            this.exprnc1_txtbx.Location = new System.Drawing.Point(149, 37);
-            this.exprnc1_txtbx.Multiline = true;
-            this.exprnc1_txtbx.Name = "exprnc1_txtbx";
-            this.exprnc1_txtbx.ReadOnly = true;
-            this.exprnc1_txtbx.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.exprnc1_txtbx.Size = new System.Drawing.Size(304, 100);
-            this.exprnc1_txtbx.TabIndex = 3;
-            this.exprnc1_txtbx.Text = "Experience";
+            this.info3_txtbx.Enabled = false;
+            this.info3_txtbx.Location = new System.Drawing.Point(7, 249);
+            this.info3_txtbx.Multiline = true;
+            this.info3_txtbx.Name = "info3_txtbx";
+            this.info3_txtbx.ReadOnly = true;
+            this.info3_txtbx.Size = new System.Drawing.Size(120, 58);
+            this.info3_txtbx.TabIndex = 6;
+            this.info3_txtbx.Text = "T+0:00\r\nDose: Substance\r\nRedose: Y/N\r\nAmount: 1000 mg";
             // 
             // exprnc2_txtbx
             // 
@@ -250,27 +232,45 @@
             this.info2_txtbx.TabIndex = 4;
             this.info2_txtbx.Text = "T+0:30\r\nDose: Substance\r\nRedose: Y/N\r\nAmount: 1000 mg";
             // 
-            // exprnc3_txtbx
+            // exprnc1_txtbx
             // 
-            this.exprnc3_txtbx.Location = new System.Drawing.Point(149, 249);
-            this.exprnc3_txtbx.Multiline = true;
-            this.exprnc3_txtbx.Name = "exprnc3_txtbx";
-            this.exprnc3_txtbx.ReadOnly = true;
-            this.exprnc3_txtbx.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.exprnc3_txtbx.Size = new System.Drawing.Size(304, 100);
-            this.exprnc3_txtbx.TabIndex = 7;
-            this.exprnc3_txtbx.Text = "Experience";
+            this.exprnc1_txtbx.Location = new System.Drawing.Point(149, 37);
+            this.exprnc1_txtbx.Multiline = true;
+            this.exprnc1_txtbx.Name = "exprnc1_txtbx";
+            this.exprnc1_txtbx.ReadOnly = true;
+            this.exprnc1_txtbx.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.exprnc1_txtbx.Size = new System.Drawing.Size(304, 100);
+            this.exprnc1_txtbx.TabIndex = 3;
+            this.exprnc1_txtbx.Text = "Experience";
             // 
-            // info3_txtbx
+            // info1_txtbx
             // 
-            this.info3_txtbx.Enabled = false;
-            this.info3_txtbx.Location = new System.Drawing.Point(7, 249);
-            this.info3_txtbx.Multiline = true;
-            this.info3_txtbx.Name = "info3_txtbx";
-            this.info3_txtbx.ReadOnly = true;
-            this.info3_txtbx.Size = new System.Drawing.Size(120, 58);
-            this.info3_txtbx.TabIndex = 6;
-            this.info3_txtbx.Text = "T+0:00\r\nDose: Substance\r\nRedose: Y/N\r\nAmount: 1000 mg";
+            this.info1_txtbx.Enabled = false;
+            this.info1_txtbx.Location = new System.Drawing.Point(7, 37);
+            this.info1_txtbx.Multiline = true;
+            this.info1_txtbx.Name = "info1_txtbx";
+            this.info1_txtbx.ReadOnly = true;
+            this.info1_txtbx.Size = new System.Drawing.Size(120, 58);
+            this.info1_txtbx.TabIndex = 2;
+            this.info1_txtbx.Text = "T+1:00\r\nDose: Substance\r\nRedose: Y/N\r\nAmount: 1000 mg";
+            // 
+            // entry_lbl
+            // 
+            this.entry_lbl.AutoSize = true;
+            this.entry_lbl.Location = new System.Drawing.Point(146, 20);
+            this.entry_lbl.Name = "entry_lbl";
+            this.entry_lbl.Size = new System.Drawing.Size(31, 13);
+            this.entry_lbl.TabIndex = 1;
+            this.entry_lbl.Text = "Entry";
+            // 
+            // info_lbl
+            // 
+            this.info_lbl.AutoSize = true;
+            this.info_lbl.Location = new System.Drawing.Point(26, 20);
+            this.info_lbl.Name = "info_lbl";
+            this.info_lbl.Size = new System.Drawing.Size(25, 13);
+            this.info_lbl.TabIndex = 0;
+            this.info_lbl.Text = "Info";
             // 
             // LoggerForm
             // 
