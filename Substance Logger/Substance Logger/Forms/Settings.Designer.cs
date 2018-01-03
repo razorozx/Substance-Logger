@@ -38,6 +38,9 @@
             this.add_btn = new System.Windows.Forms.Button();
             this.sbstnc_cmbbx = new System.Windows.Forms.ComboBox();
             this.remove_btn = new System.Windows.Forms.Button();
+            this.filename_lbl = new System.Windows.Forms.Label();
+            this.name_txtbx = new System.Windows.Forms.TextBox();
+            this.name_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // disable_chkbx
@@ -101,13 +104,13 @@
             // 
             this.add_txtbx.Location = new System.Drawing.Point(104, 62);
             this.add_txtbx.Name = "add_txtbx";
-            this.add_txtbx.Size = new System.Drawing.Size(146, 20);
+            this.add_txtbx.Size = new System.Drawing.Size(159, 20);
             this.add_txtbx.TabIndex = 6;
             this.add_txtbx.Text = "Substance Name";
             // 
             // add_btn
             // 
-            this.add_btn.Location = new System.Drawing.Point(256, 61);
+            this.add_btn.Location = new System.Drawing.Point(269, 60);
             this.add_btn.Name = "add_btn";
             this.add_btn.Size = new System.Drawing.Size(63, 22);
             this.add_btn.TabIndex = 7;
@@ -119,24 +122,53 @@
             this.sbstnc_cmbbx.FormattingEnabled = true;
             this.sbstnc_cmbbx.Location = new System.Drawing.Point(123, 37);
             this.sbstnc_cmbbx.Name = "sbstnc_cmbbx";
-            this.sbstnc_cmbbx.Size = new System.Drawing.Size(127, 21);
+            this.sbstnc_cmbbx.Size = new System.Drawing.Size(140, 21);
             this.sbstnc_cmbbx.TabIndex = 8;
             this.sbstnc_cmbbx.Text = "Substance Name";
             // 
             // remove_btn
             // 
-            this.remove_btn.Location = new System.Drawing.Point(256, 37);
+            this.remove_btn.Location = new System.Drawing.Point(269, 36);
             this.remove_btn.Name = "remove_btn";
             this.remove_btn.Size = new System.Drawing.Size(63, 22);
             this.remove_btn.TabIndex = 9;
             this.remove_btn.Text = "Remove";
             this.remove_btn.UseVisualStyleBackColor = true;
             // 
+            // filename_lbl
+            // 
+            this.filename_lbl.AutoSize = true;
+            this.filename_lbl.Location = new System.Drawing.Point(15, 104);
+            this.filename_lbl.Name = "filename_lbl";
+            this.filename_lbl.Size = new System.Drawing.Size(57, 13);
+            this.filename_lbl.TabIndex = 10;
+            this.filename_lbl.Text = "File Name:";
+            // 
+            // name_txtbx
+            // 
+            this.name_txtbx.Location = new System.Drawing.Point(85, 101);
+            this.name_txtbx.Name = "name_txtbx";
+            this.name_txtbx.Size = new System.Drawing.Size(202, 20);
+            this.name_txtbx.TabIndex = 11;
+            this.name_txtbx.Text = "File Name";
+            // 
+            // name_btn
+            // 
+            this.name_btn.Location = new System.Drawing.Point(293, 99);
+            this.name_btn.Name = "name_btn";
+            this.name_btn.Size = new System.Drawing.Size(40, 22);
+            this.name_btn.TabIndex = 12;
+            this.name_btn.Text = "Ok";
+            this.name_btn.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 161);
+            this.Controls.Add(this.name_btn);
+            this.Controls.Add(this.name_txtbx);
+            this.Controls.Add(this.filename_lbl);
             this.Controls.Add(this.remove_btn);
             this.Controls.Add(this.sbstnc_cmbbx);
             this.Controls.Add(this.add_btn);
@@ -169,5 +201,8 @@
         private System.Windows.Forms.Button add_btn;
         private System.Windows.Forms.ComboBox sbstnc_cmbbx;
         private System.Windows.Forms.Button remove_btn;
+        private System.Windows.Forms.Label filename_lbl;
+        private System.Windows.Forms.TextBox name_txtbx;
+        private System.Windows.Forms.Button name_btn;
     }
 }

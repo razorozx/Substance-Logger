@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace Substance_Logger
 {
     // This will mainly be used to recored new doses and redoses
-    struct Dosage
+    class Dosage
     {
-        Dosage(int x)   // ignore the parameter, it is forcably required..
+        public Dosage()
         {
             substance = new Substance();
             dosageUnit = new List<string>();
-            chosenDoseType = null;
+            chosenUnit = null;
             dose = 0;
 
             InitUnits();
@@ -39,9 +39,9 @@ namespace Substance_Logger
             dosageUnit.Add("tablespoon(s)");
         }
 
+        Substance substance = new Substance();
         List<string> dosageUnit;                    // stores every type of dosing unit -- grams, ounces, liters, etc.
-        Substance substance;
+        public string chosenUnit;                   // stores the chosen dosageUnit
         public long dose;
-        public string chosenDoseType;               // stores the chosen dosageUnit
     }
 }

@@ -12,6 +12,8 @@ namespace Substance_Logger
 {
     public partial class LoggerForm : Form
     {
+        bool inProgress = false;    // is the program recording?
+
         public LoggerForm()
         {
             InitializeComponent();
@@ -28,7 +30,7 @@ namespace Substance_Logger
 
         private void settings_btn_Click(object sender, EventArgs e)
         {
-
+            // open up settings form
         }
     }
 }

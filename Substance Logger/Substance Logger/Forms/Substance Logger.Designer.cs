@@ -77,9 +77,9 @@
             this.filename_lbl.AutoSize = true;
             this.filename_lbl.Location = new System.Drawing.Point(94, 18);
             this.filename_lbl.Name = "filename_lbl";
-            this.filename_lbl.Size = new System.Drawing.Size(60, 13);
+            this.filename_lbl.Size = new System.Drawing.Size(123, 13);
             this.filename_lbl.TabIndex = 2;
-            this.filename_lbl.Text = "File Name: ";
+            this.filename_lbl.Text = "File Name: No name set!";
             // 
             // curTime_lbl
             // 

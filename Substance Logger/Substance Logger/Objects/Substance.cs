@@ -12,28 +12,19 @@ namespace Substance_Logger
          * the substance again there will be a dropdown box to choose
          * the substance for ease of use.
          */
-        public string name;
-        List<Substance> interactions;
-
-        #region Constructors
-        // constructors may not be needed since everything is public and could be set regardless of constructors
-
-        Substance(List<Substance> _interact)
-        {
-            interactions = _interact;
-            name = null;
-        }
-        Substance(string _name, List<Substance> _interact)
-        {
-            interactions = _interact;
-            name = _name;
-        }
+        string name;
+        List<string> dosageUnit;            // stores unit of measurement. later to be implemented as an 'ease of use' feature when making a dose entry
+        
         Substance(string _name)
         {
-            interactions = new List<Substance>();
             name = _name;
+            dosageUnit = new List<string>();
         }
 
-        #endregion
+        void AddUnit(string _unit)
+        {
+            dosageUnit.Add(_unit);
+        }
+        
     }
 }
