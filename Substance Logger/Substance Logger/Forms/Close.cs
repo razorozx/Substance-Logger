@@ -18,6 +18,21 @@ namespace Substance_Logger.Forms
         public Close()
         {
             InitializeComponent();
+            // reset all text to nothing for a cleaner look
+        }
+
+        private void new_btn_Click(object sender, EventArgs e)
+        {
+            // get new questions
+            // replace label with question
+        }
+
+        private void check_btn_Click(object sender, EventArgs e)
+        {
+            // check if answer is correct
+            // if it is, close window and main form
+            // if it isn't, give a pop-up to user saying it's wrong
+            Environment.Exit(0);        // should force close the application?
         }
     }
 }

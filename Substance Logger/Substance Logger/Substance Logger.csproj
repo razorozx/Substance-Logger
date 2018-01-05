@@ -61,6 +61,7 @@
       <DependentUpon>Substance Logger.cs</DependentUpon>
     </Compile>
     <Compile Include="Objects\Questions.cs" />
+    <Compile Include="Objects\UserSettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\Settings.cs">
