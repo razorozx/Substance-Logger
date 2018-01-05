@@ -7,7 +7,7 @@ using System.IO;                                                // file operatio
 
 namespace Substance_Logger.Objects
 {
-    class UserSettings
+    public class UserSettings
     {
         public bool disableClose = false;
         public List<string> substances = new List<string>();    // loaded substances
@@ -41,8 +41,12 @@ namespace Substance_Logger.Objects
         }
         public void LoadSubstances()
         {
-            // loads substances from a file
+            // loads substances from a file (from same execution place or save folder)
             // this is only to be used in the constructor
+
+           // check if file exists to load data
+           //   if none exists, start out with nothing
+           //   else load it up
         }
         public void SaveSettings()
         {

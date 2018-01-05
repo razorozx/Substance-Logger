@@ -52,6 +52,7 @@
             this.disable_chkbx.TabIndex = 0;
             this.disable_chkbx.Text = "Disable Close Window";
             this.disable_chkbx.UseVisualStyleBackColor = true;
+            this.disable_chkbx.CheckedChanged += new System.EventHandler(this.disable_chkbx_CheckedChanged);
             // 
             // save_txtbx
             // 
@@ -137,7 +138,7 @@
             // filename_lbl
             // 
             this.filename_lbl.AutoSize = true;
-            this.filename_lbl.Location = new System.Drawing.Point(15, 104);
+            this.filename_lbl.Location = new System.Drawing.Point(12, 104);
             this.filename_lbl.Name = "filename_lbl";
             this.filename_lbl.Size = new System.Drawing.Size(57, 13);
             this.filename_lbl.TabIndex = 10;
@@ -183,6 +184,7 @@
             this.MinimizeBox = false;
             this.Name = "Settings";
             this.Text = "Settings";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Settings_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

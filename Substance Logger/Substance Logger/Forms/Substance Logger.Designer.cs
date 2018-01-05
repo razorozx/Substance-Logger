@@ -49,7 +49,7 @@
             this.info1_txtbx = new System.Windows.Forms.TextBox();
             this.entry_lbl = new System.Windows.Forms.Label();
             this.info_lbl = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.status_lbl = new System.Windows.Forms.Label();
             this.new_entry_grpBx.SuspendLayout();
             this.prev_entry_grpBx.SuspendLayout();
             this.SuspendLayout();
@@ -117,16 +117,19 @@
             this.exprnc_txtbx.Size = new System.Drawing.Size(446, 98);
             this.exprnc_txtbx.TabIndex = 6;
             this.exprnc_txtbx.Text = "User Experience";
+            this.exprnc_txtbx.Enter += new System.EventHandler(this.exprnc_txtbx_Enter);
+            this.exprnc_txtbx.Leave += new System.EventHandler(this.exprnc_txtbx_Leave);
             // 
             // amount_txtbx
             // 
-            this.amount_txtbx.Enabled = false;
             this.amount_txtbx.Location = new System.Drawing.Point(225, 42);
             this.amount_txtbx.MaxLength = 5;
             this.amount_txtbx.Name = "amount_txtbx";
             this.amount_txtbx.Size = new System.Drawing.Size(133, 20);
             this.amount_txtbx.TabIndex = 5;
             this.amount_txtbx.Text = "Amount";
+            this.amount_txtbx.Enter += new System.EventHandler(this.amount_txtbx_Enter);
+            this.amount_txtbx.Leave += new System.EventHandler(this.amount_txtbx_Leave);
             // 
             // msrmnt_unit_cmbbx
             // 
@@ -152,7 +155,9 @@
             this.msrmnt_unit_cmbbx.Size = new System.Drawing.Size(89, 21);
             this.msrmnt_unit_cmbbx.Sorted = true;
             this.msrmnt_unit_cmbbx.TabIndex = 4;
-            this.msrmnt_unit_cmbbx.Text = "Unit Type";
+            this.msrmnt_unit_cmbbx.Text = "Unit";
+            this.msrmnt_unit_cmbbx.Enter += new System.EventHandler(this.msrmnt_unit_cmbbx_Enter);
+            this.msrmnt_unit_cmbbx.Leave += new System.EventHandler(this.msrmnt_unit_cmbbx_Leave);
             // 
             // sbstnc_nm_cmbbx
             // 
@@ -162,11 +167,12 @@
             this.sbstnc_nm_cmbbx.Size = new System.Drawing.Size(197, 21);
             this.sbstnc_nm_cmbbx.TabIndex = 3;
             this.sbstnc_nm_cmbbx.Text = "Substance Name";
+            this.sbstnc_nm_cmbbx.Enter += new System.EventHandler(this.sbstnc_nm_cmbbx_Enter);
+            this.sbstnc_nm_cmbbx.Leave += new System.EventHandler(this.sbstnc_nm_cmbbx_Leave);
             // 
             // redose_chkbx
             // 
             this.redose_chkbx.AutoSize = true;
-            this.redose_chkbx.Enabled = false;
             this.redose_chkbx.Location = new System.Drawing.Point(26, 44);
             this.redose_chkbx.Name = "redose_chkbx";
             this.redose_chkbx.Size = new System.Drawing.Size(63, 17);
@@ -178,6 +184,8 @@
             // newdose_chkbx
             // 
             this.newdose_chkbx.AutoSize = true;
+            this.newdose_chkbx.Checked = true;
+            this.newdose_chkbx.CheckState = System.Windows.Forms.CheckState.Checked;
             this.newdose_chkbx.Location = new System.Drawing.Point(7, 20);
             this.newdose_chkbx.Name = "newdose_chkbx";
             this.newdose_chkbx.Size = new System.Drawing.Size(76, 17);
@@ -297,21 +305,21 @@
             this.info_lbl.TabIndex = 0;
             this.info_lbl.Text = "Info";
             // 
-            // label1
+            // status_lbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(335, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Status: Idle";
+            this.status_lbl.AutoSize = true;
+            this.status_lbl.Location = new System.Drawing.Point(335, 43);
+            this.status_lbl.Name = "status_lbl";
+            this.status_lbl.Size = new System.Drawing.Size(60, 13);
+            this.status_lbl.TabIndex = 6;
+            this.status_lbl.Text = "Status: Idle";
             // 
             // LoggerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 617);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.status_lbl);
             this.Controls.Add(this.prev_entry_grpBx);
             this.Controls.Add(this.new_entry_grpBx);
             this.Controls.Add(this.curTime_lbl);
@@ -323,7 +331,7 @@
             this.Name = "LoggerForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Substance Logger";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_Closing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoggerForm_FormClosing);
             this.new_entry_grpBx.ResumeLayout(false);
             this.new_entry_grpBx.PerformLayout();
             this.prev_entry_grpBx.ResumeLayout(false);
@@ -356,7 +364,7 @@
         private System.Windows.Forms.TextBox info3_txtbx;
         private System.Windows.Forms.TextBox exprnc2_txtbx;
         private System.Windows.Forms.TextBox info2_txtbx;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label status_lbl;
     }
 }
 
