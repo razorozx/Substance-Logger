@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Substance_Logger.Objects;
 
 namespace Substance_Logger
 {
@@ -17,10 +18,5 @@ namespace Substance_Logger
             InitializeComponent();
         }
 
-        private void dsblClose_mouse_hover(object sender, EventArgs e)
-        {
-            // create a tooltip to describe what this is for
-            // protip: it's meant to prevent the user from accidentally closing the program
-        }
     }
 }

@@ -15,6 +15,7 @@ namespace Substance_Logger
     {
         UserSettings settings = new UserSettings();
         List<Entry> entries = new List<Entry>();
+        bool inProgress = false;                        // is the program recording?
 
         public LoggerForm()
         {

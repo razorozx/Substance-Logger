@@ -52,7 +52,6 @@
             this.disable_chkbx.TabIndex = 0;
             this.disable_chkbx.Text = "Disable Close Window";
             this.disable_chkbx.UseVisualStyleBackColor = true;
-            this.disable_chkbx.MouseHover += new System.EventHandler(this.dsblClose_mouse_hover);
             // 
             // save_txtbx
             // 

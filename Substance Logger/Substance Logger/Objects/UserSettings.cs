@@ -3,34 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;                    // file operations + directory
+using System.IO;                                                // file operations + directory
 
 namespace Substance_Logger.Objects
 {
     class UserSettings
     {
-        bool inProgress = false;    // is the program recording?
-        bool disableClose = false;
-        List<Substance> substances = new List<Substance>();
-        string fileName = null;
-        DirectoryInfo saveLocation;
+        public bool disableClose = false;
+        public List<string> substances = new List<string>();    // loaded substances
+        public string fileName = null;
+        public DirectoryInfo saveLocation;                      // not sure if Directory or DirectoryInfo
 
-        void AddSubstance(string _substance)
+        public void AddSubstance(string _sub)
         {
-            // place new substance into substance list
+            // check if substance already exists, if so, skip it
+            // if it doesn't, add it
+
+            for (int i = 0; i < substances.Count; i++)
+            {
+                if (substances[i] == _sub)
+                {
+                    return;
+                }
+            }
+            substances.Add(_sub);
         }
-        void RemoveSubstance(string _substance)
+        public void RemoveSubstance(string _sub)
         {
             // look for substance in the list
-            // remove if found
-            // if none found, do nothing
+            for (int i = 0; i < substances.Count; i++)
+            {
+                if (substances[i] == _sub)
+                {
+                    substances.RemoveAt(i);
+                }
+            }
         }
-        void LoadSubstances()
+        public void LoadSubstances()
         {
-            // when object is created, it loads substances from a file
-            // only used in constructor
+            // loads substances from a file
+            // this is only to be used in the constructor
         }
-        void SaveSettings()
+        public void SaveSettings()
         {
             // save this object's members to the same folder it's executed on
         }

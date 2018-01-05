@@ -70,7 +70,6 @@
     <Compile Include="Forms\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Objects\Substance.cs" />
     <EmbeddedResource Include="Forms\Close.resx">
       <DependentUpon>Close.cs</DependentUpon>
     </EmbeddedResource>
