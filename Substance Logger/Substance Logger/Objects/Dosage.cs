@@ -11,6 +11,6 @@ namespace Substance_Logger
     {
         public string substance;
         public string chosenUnit;                   // stores the chosen dosageUnit
-        public long amount;
+        public string amount;
     }
 }

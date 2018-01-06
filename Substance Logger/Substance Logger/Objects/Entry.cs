@@ -10,12 +10,12 @@ namespace Substance_Logger
     struct Entry
     {
         // use DateTime.Now.ToString("h:mm tt")
-        string entryTime;                           // T+0:20
-        string realTime;                            // 23:20
-        string experience;                          // user types in their experience here
+        public string entryTime;                           // T+0:20
+        public string realTime;                            // 23:20
+        public string experience;                          // user types in their experience here
 
-        bool dose;                                  // does the entry include a dose?
-        bool redose;                                //      if so, is it a redose?
-        Dosage dosage;
+        public bool dose;                                  // does the entry include a dose?
+        public bool redose;                                //      if so, is it a redose?
+        public Dosage dosage;
     }
 }

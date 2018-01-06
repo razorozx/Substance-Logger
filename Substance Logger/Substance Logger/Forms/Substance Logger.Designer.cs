@@ -70,7 +70,7 @@
             this.strtstp_btn.Name = "strtstp_btn";
             this.strtstp_btn.Size = new System.Drawing.Size(75, 23);
             this.strtstp_btn.TabIndex = 1;
-            this.strtstp_btn.Text = "<Start/Stop> placeholder";
+            this.strtstp_btn.Text = "Start";
             this.strtstp_btn.UseVisualStyleBackColor = true;
             this.strtstp_btn.Click += new System.EventHandler(this.strtstp_btn_Click);
             // 
@@ -88,9 +88,9 @@
             this.curTime_lbl.AutoSize = true;
             this.curTime_lbl.Location = new System.Drawing.Point(335, 18);
             this.curTime_lbl.Name = "curTime_lbl";
-            this.curTime_lbl.Size = new System.Drawing.Size(100, 13);
+            this.curTime_lbl.Size = new System.Drawing.Size(67, 13);
             this.curTime_lbl.TabIndex = 3;
-            this.curTime_lbl.Text = "Current Time (24-hr)";
+            this.curTime_lbl.Text = "Current Time";
             // 
             // new_entry_grpBx
             // 

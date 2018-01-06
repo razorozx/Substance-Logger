@@ -17,7 +17,13 @@ namespace Substance_Logger
         Settings settingsForm;
         Forms.Close closeForm;
         List<Entry> entries;
+        Timer timer;
 
+        // time elapsed
+        int seconds = 0;
+        int minutes = 0;
+        int hours = 0;
+        string entryTime;
         bool inProgress = false;                        // is the program recording?
 
         public LoggerForm()
@@ -29,12 +35,61 @@ namespace Substance_Logger
             closeForm = new Forms.Close();
             entries = new List<Entry>();
 
+            timer = new Timer();
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Interval = 1000;                 // set timer to seconds
+            timer.Enabled = true;
+
+
             settingsForm.Hide();
             closeForm.Hide();
             // when form is loaded, do checks (ie. does saved directory exist?)
             //      assuming that the file was loaded before
             // create a ticker for the time
             // for the sake of the user, reset all the fields so it's blank
+        }
+
+        // ticker
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            // do something for each tick -- in minutes
+            if (inProgress)
+            {
+                // manual time tracking
+                seconds++;
+
+                if (seconds >= 60)
+                {
+                    seconds -= 60;
+                    minutes++;
+                }
+                if (minutes >= 60)
+                {
+                    minutes -= 60;
+                    hours++;
+                }
+
+                // special formatting for minutes
+                string curMin = "0";
+                if (minutes < 10)
+                {
+                    // single digit number
+                    curMin += minutes.ToString();           // ie. 01, 02, ... , 08, 09
+                }
+                else
+                    curMin = minutes.ToString();            // ie. 10, 11, 12, ... , 18, 19, 20
+
+                entryTime = "T+" + hours + ":" + curMin;    // format T+X:XX
+                new_entry_grpBx.Text = "New Entry | " + entryTime;
+            }
+
+            // refresh local time
+            DateTime localTime = DateTime.Now;
+            curTime_lbl.Text = localTime.ToLongTimeString();
+
+            // refresh
+            curTime_lbl.Refresh();
+            new_entry_grpBx.Refresh();
         }
 
         private void settings_btn_Click(object sender, EventArgs e)
@@ -45,32 +100,65 @@ namespace Substance_Logger
 
         private void strtstp_btn_Click(object sender, EventArgs e)
         {
-            if (inProgress)
+            if (inProgress)     // start -> stop
             {
-                // stop -> start
-                //  check if everything's good
-                //  if it's all good: start
-                //  else warn user why and do nothing
+                // can't start w/o file name + path, thus no error checking is needed
+                save_Work();
+                
+                inProgress = false;
+                status_lbl.Text = "Status: In Progress";
+                strtstp_btn.Text = "Start";
             }
-            else
+            else                // stop -> start
             {
-                // start -> stop
-                //  check if everything's good
-                //  if it's all good: stop & save entries to file
-                //  else warn user why and do nothing
+                if (settings.fileName == null)
+                {
+                    MessageBox.Show("No filename set!");
+                    return;
+                }
+                if (settings.saveLocation == null)
+                {
+                    MessageBox.Show("No save location set!");
+                    return;
+                }
+                
+                inProgress = true;
+                status_lbl.Text = "Status: Idle";
+                strtstp_btn.Text = "Stop";
             }
+
+        }
+
+        private void save_Work()
+        {
+            // save file under directory + file name
 
         }
 
         private void add_btn_Click(object sender, EventArgs e)
         {
-            // if they're dosing before hitting start/stop button
-            //  simply make the time T+0:00 and replace the first entry with it
-            //  keep replacing the first one with it until they hit start
-            // 
+            // create and add entry to list
+            Entry entry = new Entry();
 
-            // store user's entry into the List of Entries
-            // reset adding fields
+            entry.entryTime = this.entryTime;
+            entry.realTime = DateTime.Now.ToLongTimeString();
+            entry.experience = exprnc_txtbx.Text;
+            entry.dose = newdose_chkbx.Checked;
+            entry.redose = redose_chkbx.Checked;
+            entry.dosage.substance = sbstnc_nm_cmbbx.Text;
+            entry.dosage.chosenUnit = msrmnt_unit_cmbbx.Text;
+            entry.dosage.amount = amount_txtbx.Text;
+
+            entries.Add(entry);
+            
+            // refresh fields
+            refresh_Experience();
+        }
+
+        private void refresh_Experience()
+        {
+            // refresh experience boxes with previous experiences
+            // reset other fields too
         }
 
         private void newdose_chkbx_CheckedChanged(object sender, EventArgs e)
@@ -81,7 +169,7 @@ namespace Substance_Logger
             {
                 // unchecked -> checked
                 sbstnc_nm_cmbbx.Enabled = true;
-                redose_chkbx.Enabled = true;        // check if there is anything to redose, if none, don't enable
+                redose_chkbx.Enabled = true;            // check if there is anything to redose, if none, don't enable
                 amount_txtbx.Enabled = true;
                 msrmnt_unit_cmbbx.Enabled = true;
             }
@@ -107,8 +195,8 @@ namespace Substance_Logger
             if (redose_chkbx.Checked)
             {
                 // unchecked -> checked
-                
-                // get last used substance, amount, and units and place in approprate fields
+
+                // get previously used substance, amount, and units and place in approprate fields
             }
             else
             {
@@ -146,7 +234,7 @@ namespace Substance_Logger
 
         private void sbstnc_nm_cmbbx_Enter(object sender, EventArgs e)
         {
-            if(sbstnc_nm_cmbbx.Text == "Substance Name")
+            if (sbstnc_nm_cmbbx.Text == "Substance Name")
                 sbstnc_nm_cmbbx.Text = "";
         }
 
