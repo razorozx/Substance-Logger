@@ -196,6 +196,7 @@
             // 
             // add_btn
             // 
+            this.add_btn.Enabled = false;
             this.add_btn.Location = new System.Drawing.Point(430, 16);
             this.add_btn.Name = "add_btn";
             this.add_btn.Size = new System.Drawing.Size(22, 22);
@@ -234,7 +235,6 @@
             // 
             // info3_txtbx
             // 
-            this.info3_txtbx.Enabled = false;
             this.info3_txtbx.Location = new System.Drawing.Point(7, 249);
             this.info3_txtbx.Multiline = true;
             this.info3_txtbx.Name = "info3_txtbx";
@@ -256,7 +256,6 @@
             // 
             // info2_txtbx
             // 
-            this.info2_txtbx.Enabled = false;
             this.info2_txtbx.Location = new System.Drawing.Point(7, 143);
             this.info2_txtbx.Multiline = true;
             this.info2_txtbx.Name = "info2_txtbx";
@@ -278,7 +277,6 @@
             // 
             // info1_txtbx
             // 
-            this.info1_txtbx.Enabled = false;
             this.info1_txtbx.Location = new System.Drawing.Point(7, 37);
             this.info1_txtbx.Multiline = true;
             this.info1_txtbx.Name = "info1_txtbx";

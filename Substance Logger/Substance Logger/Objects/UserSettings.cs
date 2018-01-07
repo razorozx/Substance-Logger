@@ -12,7 +12,13 @@ namespace Substance_Logger.Objects
         public bool disableClose = false;
         public List<string> substances = new List<string>();    // loaded substances
         public string fileName = null;
-        public DirectoryInfo saveLocation;                      // not sure if Directory or DirectoryInfo
+        public string filePath;
+
+        public UserSettings()
+        {
+            // check if load file exists
+            // if so, load settings from file
+        }
 
         public void AddSubstance(string _sub)
         {

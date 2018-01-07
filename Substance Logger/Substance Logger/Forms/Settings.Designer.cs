@@ -72,6 +72,7 @@
             this.save_btn.TabIndex = 2;
             this.save_btn.Text = "...";
             this.save_btn.UseVisualStyleBackColor = true;
+            this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
             // 
             // save_lbl
             // 
@@ -107,6 +108,8 @@
             this.add_txtbx.Size = new System.Drawing.Size(159, 20);
             this.add_txtbx.TabIndex = 6;
             this.add_txtbx.Text = "Substance Name";
+            this.add_txtbx.Enter += new System.EventHandler(this.add_txtbx_Enter);
+            this.add_txtbx.Leave += new System.EventHandler(this.add_txtbx_Leave);
             // 
             // add_btn
             // 
@@ -116,6 +119,7 @@
             this.add_btn.TabIndex = 7;
             this.add_btn.Text = "Add";
             this.add_btn.UseVisualStyleBackColor = true;
+            this.add_btn.Click += new System.EventHandler(this.add_btn_Click);
             // 
             // sbstnc_cmbbx
             // 
@@ -125,6 +129,8 @@
             this.sbstnc_cmbbx.Size = new System.Drawing.Size(140, 21);
             this.sbstnc_cmbbx.TabIndex = 8;
             this.sbstnc_cmbbx.Text = "Substance Name";
+            this.sbstnc_cmbbx.Enter += new System.EventHandler(this.sbstnc_cmbbx_Enter);
+            this.sbstnc_cmbbx.Leave += new System.EventHandler(this.sbstnc_cmbbx_Leave);
             // 
             // remove_btn
             // 
@@ -134,6 +140,7 @@
             this.remove_btn.TabIndex = 9;
             this.remove_btn.Text = "Remove";
             this.remove_btn.UseVisualStyleBackColor = true;
+            this.remove_btn.Click += new System.EventHandler(this.remove_btn_Click);
             // 
             // filename_lbl
             // 
@@ -151,6 +158,8 @@
             this.name_txtbx.Size = new System.Drawing.Size(202, 20);
             this.name_txtbx.TabIndex = 11;
             this.name_txtbx.Text = "File Name";
+            this.name_txtbx.Enter += new System.EventHandler(this.name_txtbx_Enter);
+            this.name_txtbx.Leave += new System.EventHandler(this.name_txtbx_Leave);
             // 
             // name_btn
             // 
@@ -160,6 +169,7 @@
             this.name_btn.TabIndex = 12;
             this.name_btn.Text = "Ok";
             this.name_btn.UseVisualStyleBackColor = true;
+            this.name_btn.Click += new System.EventHandler(this.name_btn_Click);
             // 
             // Settings
             // 
