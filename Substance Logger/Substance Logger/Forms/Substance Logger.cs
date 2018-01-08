@@ -18,6 +18,7 @@ namespace Substance_Logger
         Forms.Close closeForm;
         List<Entry> entries;
         Timer timer;
+        List<string> substances;
 
         // time elapsed
         int seconds = 0;
@@ -25,6 +26,7 @@ namespace Substance_Logger
         int hours = 0;
         string entryTime;
         bool inProgress = false;                        // is the program recording?
+
 
         public LoggerForm()
         {
@@ -34,6 +36,7 @@ namespace Substance_Logger
             settingsForm = new Settings(ref settings);
             closeForm = new Forms.Close();
             entries = new List<Entry>();
+            substances = new List<string>();
 
             timer = new Timer();
             timer.Tick += new EventHandler(timer_Tick);
@@ -92,10 +95,6 @@ namespace Substance_Logger
             DateTime localTime = DateTime.Now;
             curTime_lbl.Text = localTime.ToLongTimeString();
 
-            // refresh combobox?
-            sbstnc_nm_cmbbx.Refresh();
-            refresh_cmbbox();
-
             // refresh stuff
             curTime_lbl.Refresh();
             new_entry_grpBx.Refresh();
@@ -105,7 +104,11 @@ namespace Substance_Logger
             else
                 filename_lbl.Text = "File Name: No name set!";
 
-            // refresh experience
+            // refresh combobox
+            if (settings.tick_refreshSubList)
+                refresh_cmbbox();
+
+
             // refresh combobox (substance list can be altered)
             //      check if redose, if so, use redose list instead (from entry)
             //      if redose, clear cmbbx text and user is forced to pick from list (can't make up own)
@@ -120,6 +123,8 @@ namespace Substance_Logger
             {
                 sbstnc_nm_cmbbx.Items.Add(sub);
             }
+            sbstnc_nm_cmbbx.Refresh();
+            settings.tick_refreshSubList = false;
         }
 
         private void settings_btn_Click(object sender, EventArgs e)
@@ -187,9 +192,9 @@ namespace Substance_Logger
             entry.experience = exprnc_txtbx.Text;
             entry.dose = newdose_chkbx.Checked;
             entry.redose = redose_chkbx.Checked;
-            entry.dosage.substance = sbstnc_nm_cmbbx.Text;
-            entry.dosage.chosenUnit = msrmnt_unit_cmbbx.Text;
-            entry.dosage.amount = amount_txtbx.Text;
+            entry.dosage.substance = (sbstnc_nm_cmbbx.Text == "Substance Name") ? null : sbstnc_nm_cmbbx.Text;
+            entry.dosage.chosenUnit = (msrmnt_unit_cmbbx.Text == "Unit") ? null : msrmnt_unit_cmbbx.Text;
+            entry.dosage.amount = (amount_txtbx.Text == "Amount") ? null : amount_txtbx.Text;
 
             entries.Add(entry);
 
@@ -202,14 +207,27 @@ namespace Substance_Logger
         {
             string createDose(string info, Entry z)
             {
+                bool checkDigits(string check)
+                {
+
+                    return true;                // if all digit char, return true
+                }
+
+                // formatting the text for info box
                 string nl = Environment.NewLine;
                 info = z.entryTime + nl;
 
                 if (z.dose)
                 {
-                    info += "Dose: " + z.dosage.substance + nl;
-                    info += "Redose: " + ((z.redose) ? "Y" : "N") + nl;
-                    info += "Amount: " + z.dosage.amount + nl;
+                    info += ((z.dosage.substance == null) ? "" : ("Dose: " + z.dosage.substance + nl));
+
+                    if (z.redose)
+                        info += "Redose: " + ((z.redose) ? "Y" : "N") + nl;
+
+                    if (checkDigits(z.dosage.amount) == false)
+                        z.dosage.amount = null;
+
+                    info += ((z.dosage.amount == null) ? "" : ("Amount: " + z.dosage.amount + " " + z.dosage.chosenUnit + nl));
                 }
 
                 return info;
@@ -278,10 +296,40 @@ namespace Substance_Logger
             // disable "substance name" and fill it in with the initial substance
             // and set the items inside the dropdown to previous substances used during
             if (redose_chkbx.Checked)
-            {
+            {   // WHOLE THING UNDER THIS IS UNTESTED (TEST!)
                 // unchecked -> checked
 
                 // get previously used substance, amount, and units and place in approprate fields
+                sbstnc_nm_cmbbx.Items.Clear();
+
+                List<string> substances = new List<string>();
+
+                // place previous entry substances into list
+                foreach (var entry in entries)
+                {
+                    substances.Add(entry.dosage.substance);
+                }
+
+                // remove duplicates
+                for (int i = 0; i < substances.Count; i++)
+                {
+                    if (i != substances.Count)  // making sure it isn't the end
+                    {
+                        for (int j = i + 1; j < substances.Count; j++)
+                        {
+                            if (substances[i] == substances[j] || substances[i] == null || substances[i] == "")
+                                substances.RemoveAt(j);
+                        }
+                    }
+                }
+
+                // add substances
+                foreach (var sub in substances)
+                {
+                    sbstnc_nm_cmbbx.Items.Add(substances);
+                }
+
+                sbstnc_nm_cmbbx.Refresh();
             }
             else
             {
@@ -362,5 +410,40 @@ namespace Substance_Logger
 
         #endregion
 
+        private void amount_txtbx_TextChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < amount_txtbx.Text.Length; i++)
+            {
+                // check if every character is numerical
+                char character = amount_txtbx.Text[i];
+                switch (character)
+                {
+                    case '0':
+                        break;
+                    case '1':
+                        break;
+                    case '2':
+                        break;
+                    case '3':
+                        break;
+                    case '4':
+                        break;
+                    case '5':
+                        break;
+                    case '6':
+                        break;
+                    case '7':
+                        break;
+                    case '8':
+                        break;
+                    case '9':
+                        break;
+                    default:
+                        amount_txtbx.Text.Remove(i, 1);   // if alphabetical char found, return false
+                        break;
+                }
+
+            }
+        }
     }
 }

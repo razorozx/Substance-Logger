@@ -128,6 +128,7 @@
             this.amount_txtbx.Size = new System.Drawing.Size(133, 20);
             this.amount_txtbx.TabIndex = 5;
             this.amount_txtbx.Text = "Amount";
+            this.amount_txtbx.TextChanged += new System.EventHandler(this.amount_txtbx_TextChanged);
             this.amount_txtbx.Enter += new System.EventHandler(this.amount_txtbx_Enter);
             this.amount_txtbx.Leave += new System.EventHandler(this.amount_txtbx_Leave);
             // 
@@ -135,20 +136,19 @@
             // 
             this.msrmnt_unit_cmbbx.FormattingEnabled = true;
             this.msrmnt_unit_cmbbx.Items.AddRange(new object[] {
-            "",
             "cup(s)",
             "fl oz",
             "gram(s)",
             "liter(s)",
-            "microgram(s)",
-            "milligram(s)",
-            "milliliter(s)",
-            "nanograms(s)",
+            "mg(s)",
+            "ml(s)",
+            "ng(s)",
             "ounces(s)",
             "pint(s)",
             "quart(s)",
-            "tablespoon(s)",
-            "teaspoon(s)"});
+            "tblspn(s)",
+            "tspn(s)",
+            "ug(s)"});
             this.msrmnt_unit_cmbbx.Location = new System.Drawing.Point(364, 43);
             this.msrmnt_unit_cmbbx.MaxDropDownItems = 20;
             this.msrmnt_unit_cmbbx.Name = "msrmnt_unit_cmbbx";
@@ -239,7 +239,7 @@
             this.info3_txtbx.Multiline = true;
             this.info3_txtbx.Name = "info3_txtbx";
             this.info3_txtbx.ReadOnly = true;
-            this.info3_txtbx.Size = new System.Drawing.Size(120, 58);
+            this.info3_txtbx.Size = new System.Drawing.Size(136, 58);
             this.info3_txtbx.TabIndex = 6;
             this.info3_txtbx.Text = "T+0:00\r\nDose: Substance\r\nRedose: Y/N\r\nAmount: 1000 mg";
             // 
@@ -260,7 +260,7 @@
             this.info2_txtbx.Multiline = true;
             this.info2_txtbx.Name = "info2_txtbx";
             this.info2_txtbx.ReadOnly = true;
-            this.info2_txtbx.Size = new System.Drawing.Size(120, 58);
+            this.info2_txtbx.Size = new System.Drawing.Size(136, 58);
             this.info2_txtbx.TabIndex = 4;
             this.info2_txtbx.Text = "T+0:30\r\nDose: Substance\r\nRedose: Y/N\r\nAmount: 1000 mg";
             // 
@@ -281,7 +281,7 @@
             this.info1_txtbx.Multiline = true;
             this.info1_txtbx.Name = "info1_txtbx";
             this.info1_txtbx.ReadOnly = true;
-            this.info1_txtbx.Size = new System.Drawing.Size(120, 58);
+            this.info1_txtbx.Size = new System.Drawing.Size(136, 58);
             this.info1_txtbx.TabIndex = 2;
             this.info1_txtbx.Text = "T+1:00\r\nDose: Substance\r\nRedose: Y/N\r\nAmount: 1000 mg";
             // 

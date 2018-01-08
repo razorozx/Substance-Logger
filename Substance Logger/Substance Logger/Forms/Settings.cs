@@ -90,6 +90,7 @@ namespace Substance_Logger
             {
                 sbstnc_cmbbx.Items.Add(sub);
             }
+            userSettings.tick_refreshSubList = true;
         }
 
         #region Polish

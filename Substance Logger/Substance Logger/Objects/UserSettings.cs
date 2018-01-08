@@ -12,7 +12,7 @@ namespace Substance_Logger.Objects
         public bool disableClose = false;
         public List<string> substances = new List<string>();    // loaded substances
         public string fileName = null;
-        public string filePath;
+        public string filePath = null;
 
         public UserSettings()
         {
@@ -58,5 +58,8 @@ namespace Substance_Logger.Objects
         {
             // save this object's members to the same folder it's executed on
         }
+
+        // other stuff
+        public bool tick_refreshSubList = false;
     }
 }
