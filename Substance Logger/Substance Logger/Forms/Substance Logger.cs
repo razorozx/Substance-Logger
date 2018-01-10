@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Substance_Logger.Objects;     // objects
+using System.IO;                    // file IO
 
 namespace Substance_Logger
 {
@@ -34,13 +35,13 @@ namespace Substance_Logger
 
             settings = new UserSettings();
             settingsForm = new Settings(ref settings);
-            closeForm = new Forms.Close();
+            closeForm = new Forms.Close(ref settings);
             entries = new List<Entry>();
             substances = new List<string>();
 
             timer = new Timer();
             timer.Tick += new EventHandler(timer_Tick);
-            timer.Interval = 1000;                 // set timer to seconds
+            timer.Interval = 1000;                      // set timer to seconds
             timer.Enabled = true;
 
             settingsForm.Hide();
@@ -48,13 +49,7 @@ namespace Substance_Logger
 
             // load substances into combobox
             foreach (string sub in settings.substances)
-            {
                 sbstnc_nm_cmbbx.Items.Add(sub);
-            }
-
-            // when form is loaded, do checks (ie. does saved directory exist?)
-            //      assuming that the file was loaded before
-            // for the sake of the user, reset all the fields so it's blank
         }
 
         // ticker
@@ -121,8 +116,12 @@ namespace Substance_Logger
 
             foreach (var sub in settings.substances)
             {
-                sbstnc_nm_cmbbx.Items.Add(sub);
+                if (sub == null)
+                    continue;
+                else
+                    sbstnc_nm_cmbbx.Items.Add(sub);
             }
+
             sbstnc_nm_cmbbx.Refresh();
             settings.tick_refreshSubList = false;
         }
@@ -178,18 +177,71 @@ namespace Substance_Logger
 
         private void save_Work()
         {
-            // save file under directory + file name
+            string nl = Environment.NewLine;
+            string lnbreak = "--------------------------------------------------";
+            string path = settings.filePath + "\\" + settings.fileName;
 
+            string EntryToString(Entry _entry)
+            {
+                // simple entry to a single string
+                string returnVal = null;
+                string dosageStuff = null;
+                string experienceStuff = null;
+
+                if (_entry.dose)
+                {
+                    dosageStuff += nl + "Dosage: " + _entry.dosage.amount + " " + _entry.dosage.chosenUnit + " of " + _entry.dosage.substance + nl;
+
+                    if (_entry.redose)
+                        dosageStuff += "Redose of " + _entry.dosage.substance + nl;
+                }
+
+                experienceStuff += _entry.entryTime + " (" + _entry.realTime + ") - " + _entry.experience + nl + nl + lnbreak + nl;
+
+                returnVal = dosageStuff + experienceStuff;
+
+                return returnVal;
+            }
+
+            // save file under directory + file name
+            FileStream file = File.Create(@path);
+
+            string meta = "Recorded on: " + DateTime.Now.ToString() + nl;
+
+            // write meta
+            foreach (char character in meta)
+            {
+                file.WriteByte((byte)character);
+            }
+
+            // write entries
+            foreach (var entry in entries)
+            {
+                string print_str = EntryToString(entry);
+
+                foreach (char character in print_str)
+                {
+                    file.WriteByte((byte)character);
+                }
+            }
+
+            file.Close();
         }
 
         private void add_btn_Click(object sender, EventArgs e)
         {
+            // check if the entry is the default stuff, if it is, do nothing
+            if (sbstnc_nm_cmbbx.Text == "Substance Name" &&
+                exprnc_txtbx.Text == "Experience" &&
+                sbstnc_nm_cmbbx.Text == "Substance Name")
+                return;
+
             // create and add entry to list
             Entry entry = new Entry();
 
             entry.entryTime = this.entryTime;
             entry.realTime = DateTime.Now.ToLongTimeString();
-            entry.experience = exprnc_txtbx.Text;
+            entry.experience = (exprnc_txtbx.Text == "Experience") ? null : exprnc_txtbx.Text;
             entry.dose = newdose_chkbx.Checked;
             entry.redose = redose_chkbx.Checked;
             entry.dosage.substance = (sbstnc_nm_cmbbx.Text == "Substance Name") ? null : sbstnc_nm_cmbbx.Text;
@@ -200,33 +252,28 @@ namespace Substance_Logger
 
             // refresh fields
             refresh_Experience();
-            settings.AddSubstance(sbstnc_nm_cmbbx.Text);
+            settings.AddSubstance(entry.dosage.substance);
+            refresh_cmbbox();
         }
 
         private void refresh_Experience()
         {
             string createDose(string info, Entry z)
             {
-                bool checkDigits(string check)
-                {
-
-                    return true;                // if all digit char, return true
-                }
-
                 // formatting the text for info box
                 string nl = Environment.NewLine;
                 info = z.entryTime + nl;
 
                 if (z.dose)
                 {
+                    // Dose: substance
                     info += ((z.dosage.substance == null) ? "" : ("Dose: " + z.dosage.substance + nl));
 
+                    // Redose: Y/N
                     if (z.redose)
                         info += "Redose: " + ((z.redose) ? "Y" : "N") + nl;
 
-                    if (checkDigits(z.dosage.amount) == false)
-                        z.dosage.amount = null;
-
+                    // Amount: 100 mg(s)
                     info += ((z.dosage.amount == null) ? "" : ("Amount: " + z.dosage.amount + " " + z.dosage.chosenUnit + nl));
                 }
 
@@ -262,6 +309,10 @@ namespace Substance_Logger
                 exprnc3_txtbx.Refresh();
             }
 
+            // if there was a substance just added, reset fields like we're expecting no substance added in the next entry
+            if (i.dosage.substance != null)
+                newdose_chkbx.Checked = false;
+            exprnc_txtbx.Text = "Experience";
         }
 
         private void newdose_chkbx_CheckedChanged(object sender, EventArgs e)
@@ -272,7 +323,7 @@ namespace Substance_Logger
             {
                 // unchecked -> checked
                 sbstnc_nm_cmbbx.Enabled = true;
-                redose_chkbx.Enabled = true;            // check if there is anything to redose, if none, don't enable
+                redose_chkbx.Enabled = true;
                 amount_txtbx.Enabled = true;
                 msrmnt_unit_cmbbx.Enabled = true;
             }
@@ -295,13 +346,25 @@ namespace Substance_Logger
         {
             // disable "substance name" and fill it in with the initial substance
             // and set the items inside the dropdown to previous substances used during
+
+            // check if there is anything to redose. if none return, else continue
             if (redose_chkbx.Checked)
-            {   // WHOLE THING UNDER THIS IS UNTESTED (TEST!)
-                // unchecked -> checked
+            {
+                List<string> substances = new List<string>();
 
-                // get previously used substance, amount, and units and place in approprate fields
-                sbstnc_nm_cmbbx.Items.Clear();
+                foreach (var entry in entries)
+                {
+                    substances.Add(entry.dosage.substance);
+                }
 
+                if (substances.Count == 0)
+                    return;
+            }
+
+
+            sbstnc_nm_cmbbx.Items.Clear();
+            if (redose_chkbx.Checked)           // unchecked -> checked
+            {
                 List<string> substances = new List<string>();
 
                 // place previous entry substances into list
@@ -313,30 +376,39 @@ namespace Substance_Logger
                 // remove duplicates
                 for (int i = 0; i < substances.Count; i++)
                 {
+                    if (substances[i] == null || substances[i] == "")
+                    {
+                        substances.RemoveAt(i);
+                        continue;
+                    }
                     if (i != substances.Count)  // making sure it isn't the end
                     {
                         for (int j = i + 1; j < substances.Count; j++)
                         {
-                            if (substances[i] == substances[j] || substances[i] == null || substances[i] == "")
+                            if (substances[i] == substances[j])
                                 substances.RemoveAt(j);
                         }
                     }
                 }
 
-                // add substances
-                foreach (var sub in substances)
+                // add substances to combobox
+                foreach (string sub in substances)
                 {
-                    sbstnc_nm_cmbbx.Items.Add(substances);
+                    sbstnc_nm_cmbbx.Items.Add(sub);
                 }
-
-                sbstnc_nm_cmbbx.Refresh();
             }
-            else
+            else                                // checked -> unchecked
             {
-                // checked -> unchecked
-
-                // reset stuff just like newdose_changed()
+                // reset substance cmbbx to originally saved substances
+                foreach (var sub in settings.substances)
+                {
+                    if (sub == null)
+                        continue;
+                    else
+                        sbstnc_nm_cmbbx.Items.Add(sub);
+                }
             }
+            sbstnc_nm_cmbbx.Refresh();
         }
 
         private void LoggerForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -348,12 +420,9 @@ namespace Substance_Logger
                 {
                     e.Cancel = true;        // don't close yet.
                     closeForm.Show();       // show question window
-                    return;
+                    // close_quit will be modified when close form checks
+                    e.Cancel = !settings.close_quit; // inverse because the way e.Cancel works
                 }
-                // assuming the if statement got skipped, means that user disabled close window
-
-                // stop everything and close window
-
             }
         }
 
@@ -375,6 +444,50 @@ namespace Substance_Logger
         {
             if (amount_txtbx.Text == "")
                 amount_txtbx.Text = "Amount";
+            else
+            {
+                List<int> removePos = new List<int>();
+
+                // check for any invalid characters (non-digits)
+                for (int i = 0; i < amount_txtbx.Text.Length; i++)
+                {
+                    // check if every character is numerical
+                    switch (amount_txtbx.Text[i])
+                    {
+                        case '0':
+                            continue;
+                        case '1':
+                            continue;
+                        case '2':
+                            continue;
+                        case '3':
+                            continue;
+                        case '4':
+                            continue;
+                        case '5':
+                            continue;
+                        case '6':
+                            continue;
+                        case '7':
+                            continue;
+                        case '8':
+                            continue;
+                        case '9':
+                            continue;
+                        default:
+                            // if alphabetical char found, add to remove list
+                            removePos.Add(i);
+                            continue;
+                    }
+                }
+
+                // must go backwards
+                for (int i = removePos.Count; i > 0; i--)
+                {
+                    // remove invalid text
+                    amount_txtbx.Text = amount_txtbx.Text.Remove(removePos[i - 1], 1);
+                }
+            }
         }
 
         private void amount_txtbx_Enter(object sender, EventArgs e)
@@ -386,14 +499,14 @@ namespace Substance_Logger
 
         private void exprnc_txtbx_Enter(object sender, EventArgs e)
         {
-            if (exprnc_txtbx.Text == "User Experience")
+            if (exprnc_txtbx.Text == "Experience")
                 exprnc_txtbx.Text = "";
         }
 
         private void exprnc_txtbx_Leave(object sender, EventArgs e)
         {
             if (exprnc_txtbx.Text == "")
-                exprnc_txtbx.Text = "User Experience";
+                exprnc_txtbx.Text = "Experience";
         }
 
         private void msrmnt_unit_cmbbx_Enter(object sender, EventArgs e)
@@ -409,41 +522,5 @@ namespace Substance_Logger
         }
 
         #endregion
-
-        private void amount_txtbx_TextChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < amount_txtbx.Text.Length; i++)
-            {
-                // check if every character is numerical
-                char character = amount_txtbx.Text[i];
-                switch (character)
-                {
-                    case '0':
-                        break;
-                    case '1':
-                        break;
-                    case '2':
-                        break;
-                    case '3':
-                        break;
-                    case '4':
-                        break;
-                    case '5':
-                        break;
-                    case '6':
-                        break;
-                    case '7':
-                        break;
-                    case '8':
-                        break;
-                    case '9':
-                        break;
-                    default:
-                        amount_txtbx.Text.Remove(i, 1);   // if alphabetical char found, return false
-                        break;
-                }
-
-            }
-        }
     }
 }

@@ -34,7 +34,6 @@
             this.curTime_lbl = new System.Windows.Forms.Label();
             this.new_entry_grpBx = new System.Windows.Forms.GroupBox();
             this.exprnc_txtbx = new System.Windows.Forms.TextBox();
-            this.amount_txtbx = new System.Windows.Forms.TextBox();
             this.msrmnt_unit_cmbbx = new System.Windows.Forms.ComboBox();
             this.sbstnc_nm_cmbbx = new System.Windows.Forms.ComboBox();
             this.redose_chkbx = new System.Windows.Forms.CheckBox();
@@ -50,6 +49,7 @@
             this.entry_lbl = new System.Windows.Forms.Label();
             this.info_lbl = new System.Windows.Forms.Label();
             this.status_lbl = new System.Windows.Forms.Label();
+            this.amount_txtbx = new System.Windows.Forms.TextBox();
             this.new_entry_grpBx.SuspendLayout();
             this.prev_entry_grpBx.SuspendLayout();
             this.SuspendLayout();
@@ -116,39 +116,27 @@
             this.exprnc_txtbx.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.exprnc_txtbx.Size = new System.Drawing.Size(446, 98);
             this.exprnc_txtbx.TabIndex = 6;
-            this.exprnc_txtbx.Text = "User Experience";
+            this.exprnc_txtbx.Text = "Experience";
             this.exprnc_txtbx.Enter += new System.EventHandler(this.exprnc_txtbx_Enter);
             this.exprnc_txtbx.Leave += new System.EventHandler(this.exprnc_txtbx_Leave);
-            // 
-            // amount_txtbx
-            // 
-            this.amount_txtbx.Location = new System.Drawing.Point(225, 42);
-            this.amount_txtbx.MaxLength = 5;
-            this.amount_txtbx.Name = "amount_txtbx";
-            this.amount_txtbx.Size = new System.Drawing.Size(133, 20);
-            this.amount_txtbx.TabIndex = 5;
-            this.amount_txtbx.Text = "Amount";
-            this.amount_txtbx.TextChanged += new System.EventHandler(this.amount_txtbx_TextChanged);
-            this.amount_txtbx.Enter += new System.EventHandler(this.amount_txtbx_Enter);
-            this.amount_txtbx.Leave += new System.EventHandler(this.amount_txtbx_Leave);
             // 
             // msrmnt_unit_cmbbx
             // 
             this.msrmnt_unit_cmbbx.FormattingEnabled = true;
             this.msrmnt_unit_cmbbx.Items.AddRange(new object[] {
-            "cup(s)",
+            "cup",
             "fl oz",
-            "gram(s)",
-            "liter(s)",
-            "mg(s)",
-            "ml(s)",
-            "ng(s)",
-            "ounces(s)",
-            "pint(s)",
-            "quart(s)",
-            "tblspn(s)",
-            "tspn(s)",
-            "ug(s)"});
+            "gram",
+            "liter",
+            "mg",
+            "ml",
+            "ng",
+            "oz",
+            "pint",
+            "quart",
+            "tblspn",
+            "tspn",
+            "ug"});
             this.msrmnt_unit_cmbbx.Location = new System.Drawing.Point(364, 43);
             this.msrmnt_unit_cmbbx.MaxDropDownItems = 20;
             this.msrmnt_unit_cmbbx.Name = "msrmnt_unit_cmbbx";
@@ -312,6 +300,17 @@
             this.status_lbl.TabIndex = 6;
             this.status_lbl.Text = "Status: Idle";
             // 
+            // amount_txtbx
+            // 
+            this.amount_txtbx.Location = new System.Drawing.Point(225, 42);
+            this.amount_txtbx.MaxLength = 5;
+            this.amount_txtbx.Name = "amount_txtbx";
+            this.amount_txtbx.Size = new System.Drawing.Size(133, 20);
+            this.amount_txtbx.TabIndex = 5;
+            this.amount_txtbx.Text = "Amount";
+            this.amount_txtbx.Enter += new System.EventHandler(this.amount_txtbx_Enter);
+            this.amount_txtbx.Leave += new System.EventHandler(this.amount_txtbx_Leave);
+            // 
             // LoggerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -348,7 +347,6 @@
         private System.Windows.Forms.GroupBox new_entry_grpBx;
         private System.Windows.Forms.GroupBox prev_entry_grpBx;
         private System.Windows.Forms.Button add_btn;
-        private System.Windows.Forms.TextBox amount_txtbx;
         private System.Windows.Forms.ComboBox msrmnt_unit_cmbbx;
         private System.Windows.Forms.ComboBox sbstnc_nm_cmbbx;
         private System.Windows.Forms.CheckBox redose_chkbx;
@@ -363,6 +361,7 @@
         private System.Windows.Forms.TextBox exprnc2_txtbx;
         private System.Windows.Forms.TextBox info2_txtbx;
         private System.Windows.Forms.Label status_lbl;
+        private System.Windows.Forms.TextBox amount_txtbx;
     }
 }
 

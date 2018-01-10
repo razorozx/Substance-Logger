@@ -50,16 +50,19 @@ namespace Substance_Logger.Objects
             // loads substances from a file (from same execution place or save folder)
             // this is only to be used in the constructor
 
-           // check if file exists to load data
-           //   if none exists, start out with nothing
-           //   else load it up
+            // check if file exists to load data
+            //   if none exists, start out with nothing
+            //   else load it up
         }
         public void SaveSettings()
         {
             // save this object's members to the same folder it's executed on
         }
 
-        // other stuff
+        /* sending the following bool as a ref from main
+         form to other forms since sending in a ref bool
+         won't work for some reason..*/
         public bool tick_refreshSubList = false;
+        public bool close_quit = false;
     }
 }

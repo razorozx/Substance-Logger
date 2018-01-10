@@ -14,10 +14,13 @@ namespace Substance_Logger.Forms
     public partial class Close : Form
     {
         Questions close_questions = new Questions();
+        UserSettings userSettings;
 
-        public Close()
+        public Close(ref UserSettings _settings)
         {
             InitializeComponent();
+            userSettings = _settings;
+
             // reset all text to nothing for a cleaner look
         }
 
