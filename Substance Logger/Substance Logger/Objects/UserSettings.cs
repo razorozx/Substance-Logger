@@ -16,8 +16,7 @@ namespace Substance_Logger.Objects
 
         public UserSettings()
         {
-            // check if load file exists
-            // if so, load settings from file
+            LoadSettings();
         }
 
         public void AddSubstance(string _sub)
@@ -45,18 +44,45 @@ namespace Substance_Logger.Objects
                 }
             }
         }
-        public void LoadSubstances()
-        {
-            // loads substances from a file (from same execution place or save folder)
-            // this is only to be used in the constructor
 
-            // check if file exists to load data
-            //   if none exists, start out with nothing
-            //   else load it up
-        }
         public void SaveSettings()
         {
             // save this object's members to the same folder it's executed on
+            TextWriter file = new StreamWriter("logsettings.dat");
+
+            // rewrite everything here
+            file.WriteLine(disableClose);
+            file.WriteLine(filePath);
+            file.WriteLine(substances.Count);
+
+            foreach (string item in substances)
+            {
+                file.WriteLine(item);                                // write substances
+            }
+
+            file.Close();
+        }
+        public void LoadSettings()
+        {
+
+            // checks if settings file exists, if it doesnt, don't load anything
+            TextReader file;
+            if (File.Exists("logsettings.dat"))
+                file = new StreamReader("logsettings.dat");
+            else
+                return;
+
+            // read file and dump into a string to extract from
+            disableClose = (file.ReadLine() == "False") ? false : true; // manual convert bool to string
+            filePath = file.ReadLine();
+            int substanceCount = Convert.ToInt32(file.ReadLine());
+
+            for (int i = 0; i < substanceCount; i++)
+            {
+                substances.Add(file.ReadLine());
+            }
+
+            file.Close();
         }
 
         /* sending the following bool as a ref from main

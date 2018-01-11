@@ -37,6 +37,7 @@ namespace Substance_Logger
         private void disable_chkbx_CheckedChanged(object sender, EventArgs e)
         {
             userSettings.disableClose = !userSettings.disableClose;     // toggle
+            userSettings.SaveSettings();
         }
 
         private void add_btn_Click(object sender, EventArgs e)
@@ -44,6 +45,7 @@ namespace Substance_Logger
             // add substance
             userSettings.AddSubstance(add_txtbx.Text);
             refresh_cmbbox();
+            userSettings.SaveSettings();
         }
 
         private void remove_btn_Click(object sender, EventArgs e)
@@ -51,6 +53,7 @@ namespace Substance_Logger
             // remove substance
             userSettings.RemoveSubstance(sbstnc_cmbbx.Text);
             refresh_cmbbox();
+            userSettings.SaveSettings();
         }
 
         private void save_btn_Click(object sender, EventArgs e)
@@ -58,6 +61,7 @@ namespace Substance_Logger
             filePath.ShowDialog();
             userSettings.filePath = filePath.SelectedPath;
             save_txtbx.Text = userSettings.filePath;
+            userSettings.SaveSettings();
         }
 
         private void name_btn_Click(object sender, EventArgs e)
@@ -79,6 +83,8 @@ namespace Substance_Logger
 
             name += ".txt";
             userSettings.fileName = name;
+
+            MessageBox.Show("File name set!");
         }
 
         private void refresh_cmbbox()
