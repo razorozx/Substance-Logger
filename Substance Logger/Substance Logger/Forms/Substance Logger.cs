@@ -188,15 +188,24 @@ namespace Substance_Logger
                 string dosageStuff = null;
                 string experienceStuff = null;
 
-                if (_entry.dose)
+                if (_entry.dose || _entry.dosage.substance != null)
                 {
-                    dosageStuff += nl + "Dosage: " + _entry.dosage.amount + " " + _entry.dosage.chosenUnit + " of " + _entry.dosage.substance + nl;
+                    dosageStuff += nl;
+                    dosageStuff += "Dosage: ";
+
+                    if (_entry.dosage.amount != null)
+                        dosageStuff += _entry.dosage.amount + " " + _entry.dosage.chosenUnit + " of ";
+
+                    dosageStuff += _entry.dosage.substance + nl;
 
                     if (_entry.redose)
                         dosageStuff += "Redose of " + _entry.dosage.substance + nl;
                 }
 
-                experienceStuff += _entry.entryTime + " (" + _entry.realTime + ") - " + _entry.experience + nl + nl + lnbreak + nl;
+                experienceStuff += _entry.entryTime + " (" + _entry.realTime + ")";
+                if (_entry.experience == null || _entry.experience == "")
+                    experienceStuff += " - " + _entry.experience;
+                experienceStuff += nl + nl + lnbreak + nl;
 
                 returnVal = dosageStuff + experienceStuff;
 
@@ -344,9 +353,6 @@ namespace Substance_Logger
 
         private void redose_chkbx_CheckedChanged(object sender, EventArgs e)
         {
-            // disable "substance name" and fill it in with the initial substance
-            // and set the items inside the dropdown to previous substances used during
-
             // check if there is anything to redose. if none return, else continue
             if (redose_chkbx.Checked)
             {
