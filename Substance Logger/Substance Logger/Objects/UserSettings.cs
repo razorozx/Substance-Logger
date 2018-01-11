@@ -79,7 +79,12 @@ namespace Substance_Logger.Objects
 
             for (int i = 0; i < substanceCount; i++)
             {
-                substances.Add(file.ReadLine());
+                string sub = file.ReadLine();
+
+                if (sub == null || sub == "")
+                    continue;
+
+                substances.Add(sub);
             }
 
             file.Close();
@@ -89,6 +94,5 @@ namespace Substance_Logger.Objects
          form to other forms since sending in a ref bool
          won't work for some reason..*/
         public bool tick_refreshSubList = false;
-        public bool close_quit = false;
     }
 }

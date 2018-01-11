@@ -14,15 +14,13 @@ namespace Substance_Logger.Forms
     public partial class Close : Form
     {
         Questions close_questions = new Questions();
-        UserSettings userSettings;
 
-        public Close(ref UserSettings _settings)
+        public Close()
         {
             InitializeComponent();
-            userSettings = _settings;
 
-            qstn_lbl.Text = close_questions.selected.Item1;
             close_questions.GetRandomQuestion();
+            qstn_lbl.Text = close_questions.selected.Item1;
             answer_txtbx.Text = "";
         }
 
@@ -38,6 +36,16 @@ namespace Substance_Logger.Forms
                 Environment.Exit(0);
             else
                 MessageBox.Show("Wrong answer");
+        }
+
+        private void Close_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // don't close the form, just hide it
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                this.Hide();
+                e.Cancel = true;
+            }
         }
     }
 }

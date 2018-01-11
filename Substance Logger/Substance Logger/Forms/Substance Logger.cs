@@ -28,14 +28,13 @@ namespace Substance_Logger
         string entryTime;
         bool inProgress = false;                        // is the program recording?
 
-
         public LoggerForm()
         {
             InitializeComponent();
 
             settings = new UserSettings();
             settingsForm = new Settings(ref settings);
-            closeForm = new Forms.Close(ref settings);
+            closeForm = new Forms.Close();
             entries = new List<Entry>();
             substances = new List<string>();
 
@@ -144,6 +143,8 @@ namespace Substance_Logger
                 add_btn.Enabled = false;
                 status_lbl.ForeColor = Color.Black;
 
+                settings.SaveSettings();
+                entries.Clear();
             }
             else                // Idle -> inProgress
             {
@@ -426,8 +427,6 @@ namespace Substance_Logger
                 {
                     e.Cancel = true;        // don't close yet.
                     closeForm.Show();       // show question window
-                    // close_quit will be modified when close form checks
-                    e.Cancel = !settings.close_quit; // inverse because the way e.Cancel works
                 }
             }
         }

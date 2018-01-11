@@ -96,6 +96,7 @@
             this.MinimizeBox = false;
             this.Name = "Close";
             this.Text = "Close";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Close_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
