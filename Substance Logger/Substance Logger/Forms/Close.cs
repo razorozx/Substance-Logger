@@ -21,21 +21,23 @@ namespace Substance_Logger.Forms
             InitializeComponent();
             userSettings = _settings;
 
-            // reset all text to nothing for a cleaner look
+            qstn_lbl.Text = close_questions.selected.Item1;
+            close_questions.GetRandomQuestion();
+            answer_txtbx.Text = "";
         }
 
         private void new_btn_Click(object sender, EventArgs e)
         {
-            // get new questions
-            // replace label with question
+            close_questions.GetRandomQuestion();
+            qstn_lbl.Text = close_questions.selected.Item1;
         }
 
         private void check_btn_Click(object sender, EventArgs e)
         {
-            // check if answer is correct
-            // if it is, close window and main form
-            // if it isn't, give a pop-up to user saying it's wrong
-            Environment.Exit(0);        // should force close the application?
+            if (answer_txtbx.Text == close_questions.selected.Item2)
+                Environment.Exit(0);
+            else
+                MessageBox.Show("Wrong answer");
         }
     }
 }

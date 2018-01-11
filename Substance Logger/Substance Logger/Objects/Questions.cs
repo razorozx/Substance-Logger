@@ -30,7 +30,7 @@ namespace Substance_Logger.Objects
             QA.Add(new Tuple<string, string>("100 - 75 + 20 = ", "45"));
             QA.Add(new Tuple<string, string>("12.5 + 2.5 = ", "15"));
             QA.Add(new Tuple<string, string>("115 - 25 = ", "90"));
-            QA.Add(new Tuple<string, string>("15 - 39 = ", "54"));
+            QA.Add(new Tuple<string, string>("15 + 39 = ", "54"));
             QA.Add(new Tuple<string, string>("115 - 25 = ", "90"));
 
             // Word stuff

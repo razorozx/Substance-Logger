@@ -22,6 +22,10 @@ namespace Substance_Logger
             filePath = new FolderBrowserDialog();
             InitializeComponent();
             userSettings = _set;
+
+            refresh_cmbbox();
+            save_txtbx.Text = userSettings.filePath;
+            save_txtbx.Refresh();
         }
 
         private void Settings_FormClosing(object sender, FormClosingEventArgs e)
