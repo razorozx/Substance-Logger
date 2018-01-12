@@ -204,7 +204,7 @@ namespace Substance_Logger
                 }
 
                 experienceStuff += _entry.entryTime + " (" + _entry.realTime + ")";
-                if (_entry.experience == null || _entry.experience == "")
+                if (_entry.experience != null || _entry.experience != "")
                     experienceStuff += " - " + _entry.experience;
                 experienceStuff += nl + nl + lnbreak + nl;
 
@@ -214,25 +214,18 @@ namespace Substance_Logger
             }
 
             // save file under directory + file name
-            FileStream file = File.Create(@path);
-
-            string meta = "Recorded on: " + DateTime.Now.ToString() + nl;
+            TextWriter file = File.CreateText(@path);
 
             // write meta
-            foreach (char character in meta)
-            {
-                file.WriteByte((byte)character);
-            }
+            string meta = "Recorded on: " + DateTime.Now.ToString() + nl;
+            file.WriteLine(meta);
 
             // write entries
             foreach (var entry in entries)
             {
                 string print_str = EntryToString(entry);
 
-                foreach (char character in print_str)
-                {
-                    file.WriteByte((byte)character);
-                }
+                file.WriteLine(print_str);
             }
 
             file.Close();
