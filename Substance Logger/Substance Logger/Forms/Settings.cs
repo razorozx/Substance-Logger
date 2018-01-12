@@ -144,7 +144,7 @@ namespace Substance_Logger
                 sbstnc_cmbbx.Text = "Substance Name";
         }
 
-        // Press Enter -> switch focus
+        // Press Enter -> do action
         private void sbstnc_cmbbx_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)
@@ -153,6 +153,7 @@ namespace Substance_Logger
                 userSettings.RemoveSubstance(sbstnc_cmbbx.Text);
                 refresh_cmbbox();
                 userSettings.SaveSettings();
+                sbstnc_cmbbx.Text = "";
             }
         }
 
@@ -164,6 +165,7 @@ namespace Substance_Logger
                 userSettings.AddSubstance(add_txtbx.Text);
                 refresh_cmbbox();
                 userSettings.SaveSettings();
+                add_txtbx.Text = "";
             }
         }
 
