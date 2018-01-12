@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoggerForm));
             this.settings_btn = new System.Windows.Forms.Button();
             this.strtstp_btn = new System.Windows.Forms.Button();
             this.filename_lbl = new System.Windows.Forms.Label();
@@ -327,6 +328,7 @@
             this.Controls.Add(this.strtstp_btn);
             this.Controls.Add(this.settings_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "LoggerForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

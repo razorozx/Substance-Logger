@@ -48,6 +48,7 @@ namespace Substance_Logger
         {
             // add substance
             userSettings.AddSubstance(add_txtbx.Text);
+            userSettings.substances.Sort();
             refresh_cmbbox();
             userSettings.SaveSettings();
         }
@@ -56,6 +57,7 @@ namespace Substance_Logger
         {
             // remove substance
             userSettings.RemoveSubstance(sbstnc_cmbbx.Text);
+            userSettings.substances.Sort();
             refresh_cmbbox();
             userSettings.SaveSettings();
         }

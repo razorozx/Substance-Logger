@@ -32,6 +32,7 @@ namespace Substance_Logger.Objects
                 }
             }
             substances.Add(_sub);
+            substances.Sort();
         }
         public void RemoveSubstance(string _sub)
         {
@@ -43,6 +44,7 @@ namespace Substance_Logger.Objects
                     substances.RemoveAt(i);
                 }
             }
+            substances.Sort();
         }
 
         public void SaveSettings()
@@ -86,7 +88,7 @@ namespace Substance_Logger.Objects
 
                 substances.Add(sub);
             }
-
+            substances.Sort();
             file.Close();
         }
 

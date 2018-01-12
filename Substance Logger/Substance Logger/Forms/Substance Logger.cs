@@ -100,7 +100,10 @@ namespace Substance_Logger
 
             // refresh combobox
             if (settings.tick_refreshSubList)
+            {
+                settings.substances.Sort();
                 refresh_cmbbox();
+            }
 
 
             // refresh combobox (substance list can be altered)
@@ -256,6 +259,7 @@ namespace Substance_Logger
             // refresh fields
             refresh_Experience();
             settings.AddSubstance(entry.dosage.substance);
+            settings.substances.Sort();
             refresh_cmbbox();
         }
 
@@ -372,6 +376,7 @@ namespace Substance_Logger
                 {
                     substances.Add(entry.dosage.substance);
                 }
+                substances.Sort();
 
                 // remove duplicates
                 for (int i = 0; i < substances.Count; i++)
