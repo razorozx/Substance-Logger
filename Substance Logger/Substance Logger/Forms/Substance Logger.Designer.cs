@@ -34,6 +34,7 @@
             this.curTime_lbl = new System.Windows.Forms.Label();
             this.new_entry_grpBx = new System.Windows.Forms.GroupBox();
             this.exprnc_txtbx = new System.Windows.Forms.TextBox();
+            this.amount_txtbx = new System.Windows.Forms.TextBox();
             this.msrmnt_unit_cmbbx = new System.Windows.Forms.ComboBox();
             this.sbstnc_nm_cmbbx = new System.Windows.Forms.ComboBox();
             this.redose_chkbx = new System.Windows.Forms.CheckBox();
@@ -49,7 +50,6 @@
             this.entry_lbl = new System.Windows.Forms.Label();
             this.info_lbl = new System.Windows.Forms.Label();
             this.status_lbl = new System.Windows.Forms.Label();
-            this.amount_txtbx = new System.Windows.Forms.TextBox();
             this.new_entry_grpBx.SuspendLayout();
             this.prev_entry_grpBx.SuspendLayout();
             this.SuspendLayout();
@@ -120,6 +120,18 @@
             this.exprnc_txtbx.Enter += new System.EventHandler(this.exprnc_txtbx_Enter);
             this.exprnc_txtbx.Leave += new System.EventHandler(this.exprnc_txtbx_Leave);
             // 
+            // amount_txtbx
+            // 
+            this.amount_txtbx.Location = new System.Drawing.Point(225, 42);
+            this.amount_txtbx.MaxLength = 5;
+            this.amount_txtbx.Name = "amount_txtbx";
+            this.amount_txtbx.Size = new System.Drawing.Size(133, 20);
+            this.amount_txtbx.TabIndex = 5;
+            this.amount_txtbx.Text = "Amount";
+            this.amount_txtbx.Enter += new System.EventHandler(this.amount_txtbx_Enter);
+            this.amount_txtbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.amount_txtbx_KeyDown);
+            this.amount_txtbx.Leave += new System.EventHandler(this.amount_txtbx_Leave);
+            // 
             // msrmnt_unit_cmbbx
             // 
             this.msrmnt_unit_cmbbx.FormattingEnabled = true;
@@ -145,6 +157,7 @@
             this.msrmnt_unit_cmbbx.TabIndex = 4;
             this.msrmnt_unit_cmbbx.Text = "Unit";
             this.msrmnt_unit_cmbbx.Enter += new System.EventHandler(this.msrmnt_unit_cmbbx_Enter);
+            this.msrmnt_unit_cmbbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.msrmnt_unit_cmbbx_KeyDown);
             this.msrmnt_unit_cmbbx.Leave += new System.EventHandler(this.msrmnt_unit_cmbbx_Leave);
             // 
             // sbstnc_nm_cmbbx
@@ -156,6 +169,7 @@
             this.sbstnc_nm_cmbbx.TabIndex = 3;
             this.sbstnc_nm_cmbbx.Text = "Substance Name";
             this.sbstnc_nm_cmbbx.Enter += new System.EventHandler(this.sbstnc_nm_cmbbx_Enter);
+            this.sbstnc_nm_cmbbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.sbstnc_nm_cmbbx_KeyDown);
             this.sbstnc_nm_cmbbx.Leave += new System.EventHandler(this.sbstnc_nm_cmbbx_Leave);
             // 
             // redose_chkbx
@@ -299,17 +313,6 @@
             this.status_lbl.Size = new System.Drawing.Size(60, 13);
             this.status_lbl.TabIndex = 6;
             this.status_lbl.Text = "Status: Idle";
-            // 
-            // amount_txtbx
-            // 
-            this.amount_txtbx.Location = new System.Drawing.Point(225, 42);
-            this.amount_txtbx.MaxLength = 5;
-            this.amount_txtbx.Name = "amount_txtbx";
-            this.amount_txtbx.Size = new System.Drawing.Size(133, 20);
-            this.amount_txtbx.TabIndex = 5;
-            this.amount_txtbx.Text = "Amount";
-            this.amount_txtbx.Enter += new System.EventHandler(this.amount_txtbx_Enter);
-            this.amount_txtbx.Leave += new System.EventHandler(this.amount_txtbx_Leave);
             // 
             // LoggerForm
             // 

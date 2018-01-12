@@ -105,6 +105,7 @@ namespace Substance_Logger
 
         #region Polish
 
+        // In/Out focus
         private void name_txtbx_Enter(object sender, EventArgs e)
         {
             if (name_txtbx.Text == "File Name")
@@ -141,7 +142,55 @@ namespace Substance_Logger
                 sbstnc_cmbbx.Text = "Substance Name";
         }
 
-        #endregion
+        // Press Enter -> switch focus
+        private void sbstnc_cmbbx_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                // remove substance
+                userSettings.RemoveSubstance(sbstnc_cmbbx.Text);
+                refresh_cmbbox();
+                userSettings.SaveSettings();
+            }
+        }
 
+        private void add_txtbx_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                // add substance
+                userSettings.AddSubstance(add_txtbx.Text);
+                refresh_cmbbox();
+                userSettings.SaveSettings();
+            }
+        }
+
+        private void name_txtbx_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                string name = name_txtbx.Text;
+
+                // is valid name?
+                if (name_txtbx.Text.Length < 1 || name_txtbx.Text == "File Name")
+                {
+                    MessageBox.Show("Not a valid file name!");
+                    return;
+                }
+
+                // replace invalid file chars
+                foreach (var chara in Path.GetInvalidFileNameChars())
+                {
+                    name = name.Replace(chara, '_');
+                }
+
+                name += ".txt";
+                userSettings.fileName = name;
+
+                MessageBox.Show("File name set!");
+            }
+        }
+
+        #endregion
     }
 }

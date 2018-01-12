@@ -425,7 +425,8 @@ namespace Substance_Logger
         }
 
         #region Polish
-
+        
+        // In/Out focus
         private void sbstnc_nm_cmbbx_Leave(object sender, EventArgs e)
         {
             if (sbstnc_nm_cmbbx.Text == "")
@@ -519,6 +520,26 @@ namespace Substance_Logger
                 msrmnt_unit_cmbbx.Text = "Unit";
         }
 
+        // Press Enter -> switch focus
+        private void sbstnc_nm_cmbbx_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+                amount_txtbx.Focus();           // move focus to amount txtbx
+        }
+
+        private void amount_txtbx_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+                msrmnt_unit_cmbbx.Focus();           // move focus to amount txtbx
+        }
+
+        private void msrmnt_unit_cmbbx_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+                exprnc_txtbx.Focus();           // move focus to amount txtbx
+        }
+
         #endregion
+
     }
 }

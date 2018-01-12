@@ -109,6 +109,7 @@
             this.add_txtbx.TabIndex = 6;
             this.add_txtbx.Text = "Substance Name";
             this.add_txtbx.Enter += new System.EventHandler(this.add_txtbx_Enter);
+            this.add_txtbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.add_txtbx_KeyDown);
             this.add_txtbx.Leave += new System.EventHandler(this.add_txtbx_Leave);
             // 
             // add_btn
@@ -130,6 +131,7 @@
             this.sbstnc_cmbbx.TabIndex = 8;
             this.sbstnc_cmbbx.Text = "Substance Name";
             this.sbstnc_cmbbx.Enter += new System.EventHandler(this.sbstnc_cmbbx_Enter);
+            this.sbstnc_cmbbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.sbstnc_cmbbx_KeyDown);
             this.sbstnc_cmbbx.Leave += new System.EventHandler(this.sbstnc_cmbbx_Leave);
             // 
             // remove_btn
@@ -159,6 +161,7 @@
             this.name_txtbx.TabIndex = 11;
             this.name_txtbx.Text = "File Name";
             this.name_txtbx.Enter += new System.EventHandler(this.name_txtbx_Enter);
+            this.name_txtbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.name_txtbx_KeyDown);
             this.name_txtbx.Leave += new System.EventHandler(this.name_txtbx_Leave);
             // 
             // name_btn
