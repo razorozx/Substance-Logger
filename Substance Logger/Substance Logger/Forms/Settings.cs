@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using Substance_Logger.Objects;
+using Substance_Logger.Forms;
 
 namespace Substance_Logger
 {
@@ -16,9 +17,12 @@ namespace Substance_Logger
     {
         UserSettings userSettings;
         FolderBrowserDialog filePath;
+        Support supportForm;
 
         public Settings(ref UserSettings _set)
         {
+            supportForm = new Support();
+
             filePath = new FolderBrowserDialog();
             InitializeComponent();
             userSettings = _set;
@@ -196,5 +200,10 @@ namespace Substance_Logger
         }
 
         #endregion
+
+        private void support_button_Click(object sender, EventArgs e)
+        {
+            supportForm.Show();
+        }
     }
 }

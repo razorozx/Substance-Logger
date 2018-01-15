@@ -41,6 +41,7 @@
             this.filename_lbl = new System.Windows.Forms.Label();
             this.name_txtbx = new System.Windows.Forms.TextBox();
             this.name_btn = new System.Windows.Forms.Button();
+            this.support_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // disable_chkbx
@@ -174,11 +175,22 @@
             this.name_btn.UseVisualStyleBackColor = true;
             this.name_btn.Click += new System.EventHandler(this.name_btn_Click);
             // 
+            // support_button
+            // 
+            this.support_button.Image = global::Substance_Logger.Properties.Resources.heart_pixel_2;
+            this.support_button.Location = new System.Drawing.Point(316, 0);
+            this.support_button.Name = "support_button";
+            this.support_button.Size = new System.Drawing.Size(28, 26);
+            this.support_button.TabIndex = 13;
+            this.support_button.UseVisualStyleBackColor = true;
+            this.support_button.Click += new System.EventHandler(this.support_button_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 161);
+            this.Controls.Add(this.support_button);
             this.Controls.Add(this.name_btn);
             this.Controls.Add(this.name_txtbx);
             this.Controls.Add(this.filename_lbl);
@@ -218,5 +230,6 @@
         private System.Windows.Forms.Label filename_lbl;
         private System.Windows.Forms.TextBox name_txtbx;
         private System.Windows.Forms.Button name_btn;
+        private System.Windows.Forms.Button support_button;
     }
 }
